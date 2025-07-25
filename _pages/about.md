@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-Hi 😆 This is Xiaoyu. I'm now working as a research intern at the [HCI Initiative](https://hci.cse.ust.hk) of [The Hong Kong University of Science and Technology](https://www.ust.hk/), under the supervision of [Prof. Xiaojuan Ma](https://home.cse.ust.hk/~mxj/). Previously I was a research intern at [Institute of Computing Technology, Chinese Academy of Sciences](https://englist.ict.cas.cn), supervised by [Prof. Tengxiang Zhang](https://saintnever.github.io/).
+Hi 😆 This is Xiaoyu. I'm now working as a research intern at the [HCI Initiative](https://hci.cse.ust.hk) of [The Hong Kong University of Science and Technology](https://www.ust.hk/), under the supervision of [Prof. Xiaojuan Ma](https://home.cse.ust.hk/~mxj/). Previously I was a research intern at [Institute of Computing Technology, Chinese Academy of Sciences](https://english.ict.cas.cn), supervised by [Prof. Tengxiang Zhang](https://saintnever.github.io/).
 
 I received my MSc degree in Big Data Technology from [HKUST](https://www.ust.hk/) and my BSc degree in Data Science at [Yuanpei College](https://yuanpei.pku.edu.cn/en/), [Peking University](https://english.pku.edu.cn/). 
 
@@ -41,5 +41,5 @@ If you are interested in my work, feel free to chat with me 🥹.
 
 ## 👻 Miscellaneous
 
-- During my undergraduate years at Yuanpei College, I was a member of **Yuanpei Profile** ([Website](https://yppf.yuanpei.pku.edu.cn/)\|[Github](https://github.com/Yuanpei-Intelligence/YPPF)\|[WeChat](https://mp.weixin.qq.com/s/CIwcsfu4i1YbVrT8MVNv6A)), a student-run organization dedicated to building an intelligent campus for our college. We developed systems to support student affairs like room booking, interest group organization, and information sharing. We even created some fun projects like "Your Annual Usage Report of Function Rooms" (a latest version developed by current members is [here](https://mp.weixin.qq.com/s/VZMfehGtSf67btI1y61PNA)). 😆
+- During my undergraduate years at Yuanpei College, I was a member of **Yuanpei Profile** ([Website](https://yppf.yuanpei.pku.edu.cn/)\|[Github](https://github.com/Yuanpei-Intelligence/YPPF)\|[WeChat](https://mp.weixin.qq.com/s/CIwcsfu4i1YbVrT8MVNv6A)), a student-run organization dedicated to building an intelligent campus for our college. We developed systems to support student affairs like room booking, interest group organization, and information sharing. We even created some fun projects like "Your Annual Usage Report of Function Rooms" (a latest version developed by current members is [here](https://mp.weixin.qq.com/s/VZMfehGtSf67btI1y61PNA)). 🫶🏻
 
