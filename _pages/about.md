@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-Hi 😆 This is Xiaoyu. I'm now a working as a research intern at the [HCI Initiative](https://hci.cse.ust.hk) of [The Hong Kong University of Science and Technology](https://www.ust.hk/), under the supervision of [Prof. Xiaojuan Ma](https://mxj.cse.ust.hk/). Previously I was a research intern at [Institute of Computing Technology, Chinese Academy of Sciences](https://englist.ict.cas.cn), supervised by [Prof. Tengxiang Zhang](https://saintnever.github.io/).
+Hi 😆 This is Xiaoyu. I'm now working as a research intern at the [HCI Initiative](https://hci.cse.ust.hk) of [The Hong Kong University of Science and Technology](https://www.ust.hk/), under the supervision of [Prof. Xiaojuan Ma](https://mxj.cse.ust.hk/). Previously I was a research intern at [Institute of Computing Technology, Chinese Academy of Sciences](https://englist.ict.cas.cn), supervised by [Prof. Tengxiang Zhang](https://saintnever.github.io/).
 
 I received my MSc degree in Big Data Technology from [HKUST](https://www.ust.hk/) and my BSc degree in Data Science at [Yuanpei College](https://yuanpei.pku.edu.cn/en/), [Peking University](https://english.pku.edu.cn/). 
 
