@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Forest + sky pixel cute academic homepage design system.
+   Red panda orange/brown + tree greens + brown trunks + sky blue + white clouds.
+   All colors MUST be HSL. */
+
+@layer base {
+  :root {
+    /* Sky background — soft blue with a hint of warmth */
+    --background: 200 75% 94%;
+    --foreground: 25 35% 18%;
+
+    --card: 40 50% 98%;
+    --card-foreground: 25 35% 18%;
+
+    --popover: 40 50% 98%;
+    --popover-foreground: 25 35% 18%;
+
+    /* Primary — red panda orange */
+    --primary: 22 85% 55%;
+    --primary-foreground: 40 60% 98%;
+    --primary-soft: 28 90% 90%;
+    --primary-ink: 18 65% 25%;
+
+    /* Secondary — leaf green */
+    --secondary: 130 45% 88%;
+    --secondary-foreground: 140 55% 20%;
+
+    --muted: 90 30% 92%;
+    --muted-foreground: 100 15% 35%;
+
+    /* Accent — deep forest green */
+    --accent: 140 50% 45%;
+    --accent-foreground: 40 60% 98%;
+
+    /* Pixel highlight — sunny warm yellow for badges */
+    --highlight: 42 95% 65%;
+    --highlight-foreground: 25 70% 22%;
+
+    /* Forest-themed semantic tokens */
+    --leaf-light: 110 55% 60%;
+    --leaf-dark: 140 55% 30%;
+    --bark: 25 45% 28%;
+    --bark-light: 28 40% 45%;
+    --bamboo: 90 50% 50%;
+    --panda-orange: 22 85% 55%;
+    --panda-brown: 18 50% 22%;
+    --sky: 200 75% 80%;
+    --cloud: 0 0% 100%;
+
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 25 40% 35%;
+    --input: 90 30% 85%;
+    --ring: 22 85% 55%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-sky: linear-gradient(180deg,
+      hsl(200 80% 88%) 0%,
+      hsl(200 75% 92%) 35%,
+      hsl(120 40% 92%) 70%,
+      hsl(110 45% 85%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(40 60% 99%), hsl(40 50% 96%));
+    --gradient-badge: linear-gradient(135deg, hsl(22 85% 60%), hsl(35 90% 60%));
+    --gradient-forest: linear-gradient(180deg, hsl(140 55% 35%), hsl(140 60% 22%));
+
+    /* Shadows — soft + pixel */
+    --shadow-soft: 0 4px 20px -8px hsl(25 50% 30% / 0.22);
+    --shadow-pop: 0 8px 30px -10px hsl(140 50% 25% / 0.3);
+    --shadow-pixel: 3px 3px 0 0 hsl(18 65% 25% / 0.85);
+    --shadow-pixel-sm: 2px 2px 0 0 hsl(18 65% 25% / 0.85);
+
+    /* Transitions */
+    --transition-bounce: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    --transition-smooth: all 0.2s ease-out;
+
+    --sidebar-background: 40 50% 98%;
+    --sidebar-foreground: 25 35% 18%;
+    --sidebar-primary: 22 85% 55%;
+    --sidebar-primary-foreground: 40 60% 98%;
+    --sidebar-accent: 130 45% 88%;
+    --sidebar-accent-foreground: 140 55% 20%;
+    --sidebar-border: 25 30% 80%;
+    --sidebar-ring: 22 85% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background-image: var(--gradient-sky);
+    background-attachment: fixed;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  /* Pixel-style headings */
+  .font-pixel {
+    font-family: "Press Start 2P", "VT323", ui-monospace, monospace;
+    letter-spacing: 0.02em;
+  }
+
+  .font-display {
+    font-family: "Fredoka", "Nunito", system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer components {
+  /* Pixel-bordered card */
+  .pixel-card {
+    @apply bg-card rounded-2xl border-2 p-6;
+    border-color: hsl(var(--primary-ink));
+    box-shadow: var(--shadow-pixel);
+    transition: var(--transition-bounce);
+  }
+
+  .pixel-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 0 hsl(var(--primary-ink) / 0.85);
+  }
+
+  .pixel-tag {
+    @apply inline-flex items-center gap-1 rounded-md border-2 px-2 py-0.5 text-xs font-bold;
+    border-color: hsl(var(--primary-ink));
+    box-shadow: var(--shadow-pixel-sm);
+  }
+
+  .cloud-divider {
+    background: radial-gradient(circle at 10px 10px, hsl(var(--cloud)) 8px, transparent 9px),
+                radial-gradient(circle at 30px 12px, hsl(var(--cloud)) 10px, transparent 11px),
+                radial-gradient(circle at 50px 10px, hsl(var(--cloud)) 8px, transparent 9px);
+    background-size: 60px 20px;
+    background-repeat: repeat-x;
+    height: 20px;
+  }
+
+  /* Subtle floating animation for decorative bits */
+  @keyframes float-soft {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+  }
+
+  .animate-float {
+    animation: float-soft 4s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%, 90%, 100% { opacity: 1; }
+    95% { opacity: 0; }
+  }
+
+  .animate-blink {
+    animation: blink 3s infinite;
+  }
+
+  @keyframes sway {
+    0%, 100% { transform: rotate(-1deg); }
+    50% { transform: rotate(1deg); }
+  }
+
+  .animate-sway {
+    animation: sway 5s ease-in-out infinite;
+    transform-origin: bottom center;
+  }
+}
