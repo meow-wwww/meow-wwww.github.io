@@ -1,5 +1,12 @@
-import {useState} from "react";
-import { Award, ChevronDown, ExternalLink as ExternalLinkIcon, Sparkles } from "lucide-react";
+import { useState } from "react";
+import { 
+  Award, 
+  ChevronDown, 
+  Code2, 
+  ExternalLink as ExternalLinkIcon, 
+  Sparkles,
+  Video,
+ } from "lucide-react";
 
 type Publication = {
   title: string;
@@ -8,6 +15,8 @@ type Publication = {
   highlight?: string;
   authors: React.ReactNode;
   tldr?: React.ReactNode;
+  video?: string;
+  code?: string;
 };
 
 const publications: Publication[] = [
@@ -21,6 +30,7 @@ const publications: Publication[] = [
          Yuanhao Zhang, Wenbo Li, <Me />, Kangyu Yuan, Shuai Ma, Xiaojuan Ma
       </>
     ),
+    code: "https://github.com/Yuanky123/Knowledgebot-backend",
   },
   {
     title:
@@ -44,6 +54,7 @@ const publications: Publication[] = [
         </p>
       </>
     ),
+    code: "https://github.com/meow-wwww/QuestPro_HRI_Detection",
   },
   {
     title:
@@ -87,6 +98,8 @@ const publications: Publication[] = [
         </p>
       </>
     ),
+    code: "https://github.com/meow-wwww/WebJump",
+    video: "https://www.youtube.com/watch?v=RPzv-_atlig",
   },
 ];
 
@@ -125,7 +138,7 @@ const Publications = () => {
             </a>
 
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{pub.authors}</p>
-            <TldrToggle>
+            <TldrToggle code={pub.code} video={pub.video}>
               {pub.tldr ?? (
                 <span className="italic text-muted-foreground">
                   TL;DR coming soon ... I'm still thinking about how to write it ...
@@ -139,18 +152,49 @@ const Publications = () => {
   );
 };
 
-const TldrToggle = ({ children }: { children: React.ReactNode }) => {
+const TldrToggle = ({ children, code, video }: 
+  { 
+    children: React.ReactNode,
+    code: string,
+    video: string,
+  }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const extraLinks = [
+    code && { label: "Code", url: code, icon: Code2 },
+    video && { label: "Video", url: video, icon: Video },
+  ].filter(Boolean) as { label: string; url: string; icon: typeof Code2 }[];
+
   return (
     <div className="mt-3">
-      <button 
-      type="button" onClick={() => setIsOpen((v) => !v)} aria-expanded={isOpen} className="pixel-tag bg-secondary text-secondary-foreground font-display hover:bg-accent hover:text-accent-foreground transition-colors">
-        <Sparkles className="h-3 w-3" />
-        TL;DR
-        <ChevronDown
-          className={`h-3 w-3 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
-          />
-      </button>
+      <div className="flex flex-wrap items-center gap-2">
+        <button 
+          type="button" 
+          onClick={() => setIsOpen((v) => !v)} 
+          aria-expanded={isOpen} 
+          className="pixel-tag bg-secondary text-secondary-foreground font-display hover:bg-accent hover:text-accent-foreground transition-colors">
+          <Sparkles className="h-3 w-3" />
+          TL;DR
+          <ChevronDown
+            className={`h-3 w-3 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+            />
+        </button>
+
+        {extraLinks.map((link) => {
+          const Icon = link.icon;
+          return (
+            <a
+              key={link.label}
+              href={link.url}
+              target="_blank"
+              rel="noreferrer"
+              className="pixel-tag bg-secondary text-secondary-foreground font-display hover:bg-accent hover:text-accent-foreground transition-colors"
+            >
+              <Icon className="h-3 w-3" />
+              {link.label}
+            </a>
+          );
+        })}
+      </div>
 
       <div
         className={`grid transition-all duration-300 ease-out ${
