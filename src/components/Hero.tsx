@@ -24,7 +24,7 @@ const Hero = () => {
 
       <div className="mx-auto max-w-3xl px-5">
         <span className="pixel-tag bg-highlight text-highlight-foreground font-pixel text-[10px]">
-          <Sparkles className="h-3 w-3" /> hello world
+          <Sparkles className="h-3 w-3" /> &nbsp;Red Panda :)
         </span>
 
         <div className="mt-5 flex items-center gap-5 sm:gap-7">

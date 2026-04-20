@@ -20,32 +20,32 @@ const ForestBackground = () => {
       />
 
       {/* Left edge trees & bamboo, growing from bottom */}
-      <div className="absolute bottom-0 left-0 flex h-[78%] flex-col-reverse items-start opacity-60">
+      {/* <div className="absolute bottom-0 left-0 flex h-[78%] flex-col-reverse items-start opacity-60">
         <PixelTree className="h-72 w-32 animate-sway" />
-      </div>
-      <div className="absolute bottom-0 left-[8%] flex h-[55%] flex-col-reverse items-start">
+      </div> */}
+      <div className="absolute bottom-0 left-[8%] flex h-[55%] flex-col-reverse items-start opacity-80">
         <PixelBamboo className="h-[60vh] w-10" style={{ animationDelay: "0.7s" }} />
       </div>
-      <div className="absolute bottom-0 left-[2%] hidden h-[40%] flex-col-reverse items-start sm:flex">
+      <div className="absolute bottom-0 left-[2%] hidden h-[40%] flex-col-reverse items-start sm:flex opacity-80">
         <PixelBamboo className="h-[40vh] w-8" style={{ animationDelay: "1.4s" }} />
       </div>
 
       {/* Right edge trees & bamboo */}
-      <div className="absolute bottom-0 right-0 flex h-[80%] flex-col-reverse items-end opacity-60">
+      {/* <div className="absolute bottom-0 right-0 flex h-[80%] flex-col-reverse items-end opacity-60">
         <PixelTree
           className="h-80 w-36 animate-sway"
           style={{ animationDelay: "1.5s" }}
         />
-      </div>
-      <div className="absolute bottom-0 right-[10%] flex h-[58%] flex-col-reverse items-end">
+      </div> */}
+      <div className="absolute bottom-0 right-[10%] flex h-[58%] flex-col-reverse items-end opacity-80">
         <PixelBamboo className="h-[58vh] w-10" style={{ animationDelay: "2s" }} />
       </div>
-      <div className="absolute bottom-0 right-[3%] hidden h-[45%] flex-col-reverse items-end sm:flex">
+      <div className="absolute bottom-0 right-[3%] hidden h-[45%] flex-col-reverse items-end sm:flex opacity-80">
         <PixelBamboo className="h-[45vh] w-8" style={{ animationDelay: "0.4s" }} />
       </div>
 
       {/* Edge critters — red pandas peeking */}
-      <PixelPanda className="absolute bottom-[6%] left-[1%] h-12 w-12 animate-float opacity-60" />
+      {/* <PixelPanda className="absolute bottom-[6%] left-[1%] h-12 w-12 animate-float opacity-60" />
       <PixelPanda
         className="absolute bottom-[18%] right-[2%] h-10 w-10 animate-float opacity-60"
         style={{ animationDelay: "1.6s" }}
@@ -58,7 +58,7 @@ const ForestBackground = () => {
       <PixelLeaf
         className="absolute bottom-[42%] right-[14%] h-5 w-5 animate-float"
         style={{ animationDelay: "0.9s" }}
-      />
+      /> */}
 
       {/* Ground hint at the very bottom */}
       <div

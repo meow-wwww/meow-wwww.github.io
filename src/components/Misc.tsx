@@ -11,8 +11,8 @@ const Misc = () => {
           <strong className="text-primary-ink">Yuanpei Profile</strong> ({" "}
           <Link href="https://yppf.yuanpei.pku.edu.cn/">Website</Link> |{" "}
           <Link href="https://github.com/Yuanpei-Intelligence/YPPF">Github</Link> |{" "}
-          <Link href="https://mp.weixin.qq.com/s/CIwcsfu4i1YbVrT8MVNv6A">WeChat</Link> ), a
-          student-run organization dedicated to building an intelligent campus for our college.
+          <Link href="https://mp.weixin.qq.com/s/CIwcsfu4i1YbVrT8MVNv6A">WeChat Official Account</Link> ), a
+          student-run organization dedicated to building an intelligent campus service for our college.
           We developed systems to support student affairs like room booking, interest group
           organization, and information sharing. We even created some fun projects like "Your
           Annual Usage Report of Function Rooms" (a latest version developed by current members

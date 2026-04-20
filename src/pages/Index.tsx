@@ -18,7 +18,7 @@ const Index = () => {
 
       <footer className="mx-auto mt-10 max-w-3xl px-5 text-center">
         <p className="font-pixel text-[10px] text-muted-foreground">
-          ✦ made with care · © {new Date().getFullYear()} Xiaoyu Wang ✦
+          ✦ Built with Lovable · © {new Date().getFullYear()} Xiaoyu Wang ✦
         </p>
       </footer>
     </main>
