@@ -11,6 +11,17 @@ type Publication = {
 const publications: Publication[] = [
   {
     title:
+      "\"Shall We Dig Deeper?\": Designing and Evaluating Strategies for LLM Agents to Advance Knowledge Co-Construction in Asynchronous Online Discussions",
+    url: "https://dl.acm.org/doi/10.1145/3772318.3790551",
+    venue: "CHI '26",
+    authors: (
+      <>
+         Yuanhao Zhang, Wenbo Li, <Me />, Kangyu Yuan, Shuai Ma, Xiaojuan Ma
+      </>
+    ),
+  },
+  {
+    title:
       "Signaling Human Intentions to Service Robots: Understanding the Use of Social Cues during In-Person Conversations",
     url: "https://dl.acm.org/doi/full/10.1145/3706598.3714235",
     venue: "CHI '25",
