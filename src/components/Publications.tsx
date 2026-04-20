@@ -1,4 +1,5 @@
-import { Award, ExternalLink as ExternalLinkIcon } from "lucide-react";
+import {useState} from "react";
+import { Award, ChevronDown, ExternalLink as ExternalLinkIcon, Sparkles } from "lucide-react";
 
 type Publication = {
   title: string;
@@ -6,6 +7,7 @@ type Publication = {
   venue: string;
   highlight?: string;
   authors: React.ReactNode;
+  tldr?: React.ReactNode;
 };
 
 const publications: Publication[] = [
@@ -31,6 +33,17 @@ const publications: Publication[] = [
         Hanfang Lyu, <Me />, Nandi Zhang, Shuai Ma, Qian Zhu, Yuhan Luo, Fugee Tsung, Xiaojuan Ma
       </>
     ),
+    tldr: (
+      <>
+        <p>
+          We got some empirical insights on how robot morphologies and conversation roles will affect users' choices of social cues to signal their intentions.
+        <br />
+          Some findings are quite counterintuitive🧐. For example, guess whether the speaker or the listener will use more verbal cues? 
+          At the beginning we all thought that the listener will use more verbal cues since their verbal channel is less occupied. 
+          But it turned out that they will use less verbal cues for politeness concerns ... :)
+        </p>
+      </>
+    ),
   },
   {
     title:
@@ -43,6 +56,16 @@ const publications: Publication[] = [
         Xin Zeng*, <Me />*, Tengxiang Zhang, Chun Yu, Shengdong Zhao, Yiqiang Chen
       </>
     ),
+    tldr: (
+      <>
+        <p>
+          Existing gesture interfaces only works with a fixed set of gestures (no matter they are built-in or user-defined), 
+          which introduces learning or demonstration efforts for users. 
+        <br />
+          We built an LLM-based framework to understand the intentions behind <strong>free-form</strong> hand gestures, with the help of contextual information. 
+        </p>
+      </>
+    ),
   },
   {
     title: "WebJump: AR-facilitated Distributed Display of Web Pages",
@@ -51,6 +74,17 @@ const publications: Publication[] = [
     authors: (
       <>
         Xin Zeng, <Me />, Zhengtai Gou, Yiqiang Chen, Tengxiang Zhang
+      </>
+    ),
+    tldr: (
+      <>
+        <p>
+          PC has high-quality displays but is limited in input modalities. 
+        <br />
+          Head-mounted displays (HMDs) enable more diverse and immersive input/output modalities but has relatively low quality displays. 
+        <br />
+          We built WebJump to combine the advantages of both :D
+        </p>
       </>
     ),
   },
@@ -91,10 +125,45 @@ const Publications = () => {
             </a>
 
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{pub.authors}</p>
+            <TldrToggle>
+              {pub.tldr ?? (
+                <span className="italic text-muted-foreground">
+                  TL;DR coming soon ... I'm still thinking about how to write it ...
+                </span>
+              )}
+            </TldrToggle>
           </li>
         ))}
       </ul>
     </section>
+  );
+};
+
+const TldrToggle = ({ children }: { children: React.ReactNode }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div className="mt-3">
+      <button 
+      type="button" onClick={() => setIsOpen((v) => !v)} aria-expanded={isOpen} className="pixel-tag bg-secondary text-secondary-foreground font-display hover:bg-accent hover:text-accent-foreground transition-colors">
+        <Sparkles className="h-3 w-3" />
+        TL;DR
+        <ChevronDown
+          className={`h-3 w-3 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+          />
+      </button>
+
+      <div
+        className={`grid transition-all duration-300 ease-out ${
+          isOpen ? "mt-3 grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <div className="rounded-x1 border-2 border-dashed border-primary-ink/40 bg-primary-soft/60 p-3 text-sm leading-relaxed text-primary-ink">
+            {children}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
