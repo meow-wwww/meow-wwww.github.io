@@ -29,7 +29,7 @@ const Hero = () => {
 
         <div className="mt-5 flex items-center gap-5 sm:gap-7">
           <h1 className="font-display flex-1 text-4xl sm:text-5xl font-bold leading-tight text-primary-ink">
-            Hi <span className="inline-block animate-float">😆</span> I'm{" "}
+            Hi <span className="inline-block animate-float">🥳</span> This is{" "}
             <span className="relative inline-block">
               <span className="relative z-10">Xiaoyu</span>
               <span className="absolute inset-x-0 bottom-1 -z-0 h-3 bg-primary/35 rounded-sm" />
@@ -50,12 +50,12 @@ const Hero = () => {
         </div>
 
         <p className="mt-6 text-base sm:text-lg leading-relaxed text-foreground/85">
-          I'm now working as a research intern at the{" "}
+          I'm now working as a research assistant at the{" "}
           <ExternalLink href="https://hci.cse.ust.hk/">HCI Initiative</ExternalLink> of{" "}
           <ExternalLink href="https://www.ust.hk/">
             The Hong Kong University of Science and Technology
           </ExternalLink>
-          , under the supervision of{" "}
+          , supervised by{" "}
           <ExternalLink href="https://home.cse.ust.hk/~mxj/">Prof. Xiaojuan Ma</ExternalLink>.
           Previously I was a research intern at{" "}
           <ExternalLink href="https://english.ict.cas.cn/">

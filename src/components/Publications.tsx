@@ -116,12 +116,12 @@ const Publications = () => {
         {publications.map((pub) => (
           <li key={pub.title} className="pixel-card">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="pixel-tag bg-primary-soft text-primary-ink font-display">
+              <span className="pixel-tag bg-primary-soft text-primary-ink font-display text-base font-semibold">
                 {pub.venue}
               </span>
               {pub.highlight && (
-                <span className="pixel-tag bg-highlight text-highlight-foreground font-display">
-                  <Award className="h-3 w-3" />
+                <span className="pixel-tag bg-highlight text-highlight-foreground font-display text-base font-semibold">
+                  <Award className="h-4 w-4" />
                   {pub.highlight}
                 </span>
               )}
