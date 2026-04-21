@@ -30,6 +30,15 @@ const publications: Publication[] = [
          Yuanhao Zhang, Wenbo Li, <Me />, Kangyu Yuan, Shuai Ma, Xiaojuan Ma
       </>
     ),
+    tldr: (
+      <>
+        <p>
+          We studied how an LLM-powered agent with different intervention styles (telling, selling, participating, delegating) could advance knowledge co-construction in asynchronous online discussions.
+        <br />
+          Each style has distinct effects on both content and experience.
+        </p>
+      </>
+    ),
     code: "https://github.com/Yuanky123/Knowledgebot-backend",
   },
   {
@@ -55,6 +64,7 @@ const publications: Publication[] = [
       </>
     ),
     code: "https://github.com/meow-wwww/QuestPro_HRI_Detection",
+    video: "https://www.youtube.com/watch?v=iUH8Oag2Dso",
   },
   {
     title:
