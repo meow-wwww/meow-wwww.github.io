@@ -4,6 +4,7 @@ import {
   ChevronDown, 
   Code2, 
   ExternalLink as ExternalLinkIcon, 
+  FileText,
   Sparkles,
   Video,
  } from "lucide-react";
@@ -15,6 +16,7 @@ type Publication = {
   highlight?: string;
   authors: React.ReactNode;
   tldr?: React.ReactNode;
+  paper?: string;
   video?: string;
   code?: string;
 };
@@ -39,6 +41,7 @@ const publications: Publication[] = [
         </p>
       </>
     ),
+    paper: "/files/Zhang et al. - 2026 - Shall We Dig Deeper Designing and Evaluating Strategies for LLM Agents to Advance Knowledge Co-C.pdf",
     code: "https://github.com/Yuanky123/Knowledgebot-backend",
   },
   {
@@ -63,6 +66,7 @@ const publications: Publication[] = [
         </p>
       </>
     ),
+    paper: "/files/Lyu et al. - 2025 - Signaling Human Intentions to Service Robots Understanding the Use of Social Cues during In-Person Conversations.pdf",
     code: "https://github.com/meow-wwww/QuestPro_HRI_Detection",
     video: "https://www.youtube.com/watch?v=iUH8Oag2Dso",
   },
@@ -87,6 +91,7 @@ const publications: Publication[] = [
         </p>
       </>
     ),
+    paper: "/files/Zeng et al. - 2024 - GestureGPT Toward Zero-Shot Free-Form Hand Gesture Understanding with Large Language Model Agents.pdf",
   },
   {
     title: "WebJump: AR-facilitated Distributed Display of Web Pages",
@@ -108,6 +113,7 @@ const publications: Publication[] = [
         </p>
       </>
     ),
+    paper: "/files/Zeng et al. - 2023 - WebJump AR-facilitated Distributed Display of Web Pages.pdf",
     code: "https://github.com/meow-wwww/WebJump",
     video: "https://www.youtube.com/watch?v=RPzv-_atlig",
   },
@@ -148,7 +154,7 @@ const Publications = () => {
             </a>
 
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{pub.authors}</p>
-            <TldrToggle code={pub.code} video={pub.video}>
+            <TldrToggle paper={pub.paper} code={pub.code} video={pub.video}>
               {pub.tldr ?? (
                 <span className="italic text-muted-foreground">
                   TL;DR coming soon ... I'm still thinking about how to write it ...
@@ -162,14 +168,16 @@ const Publications = () => {
   );
 };
 
-const TldrToggle = ({ children, code, video }: 
+const TldrToggle = ({ children, paper, code, video }: 
   { 
     children: React.ReactNode,
+    paper: string,
     code: string,
     video: string,
   }) => {
   const [isOpen, setIsOpen] = useState(false);
   const extraLinks = [
+    paper && { label: "Paper", url: paper, icon: FileText },
     code && { label: "Code", url: code, icon: Code2 },
     video && { label: "Video", url: video, icon: Video },
   ].filter(Boolean) as { label: string; url: string; icon: typeof Code2 }[];
