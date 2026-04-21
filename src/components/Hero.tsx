@@ -1,5 +1,6 @@
 import { Sparkles } from "lucide-react";
 import avatar from "@/assets/avatar.jpg";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 
 const Hero = () => {
   return (
@@ -38,15 +39,41 @@ const Hero = () => {
           </h1>
 
           {/* Avatar — red panda */}
-          <div className="pixel-card !p-2 !rounded-2xl bg-primary-soft shrink-0">
-            <div className="h-24 w-24 sm:h-28 sm:w-28 overflow-hidden rounded-xl bg-gradient-to-br from-primary/30 to-highlight/40">
-              <img
-                src={avatar}
-                alt="Xiaoyu Wang's avatar — a cute red panda"
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </div>
+          <HoverCard openDelay={120} closeDelay={120}>
+            <HoverCardTrigger asChild>
+              <div className="pixel-card !p-2 !rounded-2xl bg-primary-soft shrink-0 cursor-pointer">
+                <div className="h-24 w-24 sm:h-28 sm:w-28 overflow-hidden rounded-xl bg-gradient-to-br from-primary/30 to-highlight/40">
+                  <img
+                    src={avatar}
+                    alt="Xiaoyu Wang's avatar — a cute red panda"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </div>
+            </HoverCardTrigger>
+            <HoverCardContent
+              side="bottom"
+              align="end"
+              sideOffset={-24}
+              className="w-64 pixel-card !p-3 !rounded-2xl bg-card border-2 text-sm text-foreground/90 animate-fade-in"
+            >
+              <div className="flex items-start gap-2">
+                <Sparkles className="h-4 w-4 text-highlight shrink-0 mt-0.5" />
+                <p className="leading-relaxed">
+                  This avatar is made by{" "}
+                  <a
+                    href="https://weibo.com/u/5347613156"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold text-primary underline decoration-primary/40 decoration-2 underline-offset-2 hover:text-primary-ink hover:decoration-primary"
+                  >
+                    阿闷aman
+                  </a>
+                  , a Chinese cartoonist.
+                </p>
+              </div>
+            </HoverCardContent>
+          </HoverCard>
         </div>
 
         <p className="mt-6 text-base sm:text-lg leading-relaxed text-foreground/85">
