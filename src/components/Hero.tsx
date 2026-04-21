@@ -101,9 +101,12 @@ const Hero = () => {
 
         <p className="mt-4 text-base sm:text-lg leading-relaxed text-foreground/85">
           My research focuses on Human-Computer Interaction, encompassing both
-          technique-driven approaches (e.g., designing novel input/output techniques) and
-          problem-driven approaches (e.g. understanding users' choices of non-verbal cues to
-          express their intents). While they may have different paradigms, they are deeply
+          technique-driven approaches (e.g., designing novel{" "}
+          <PaperLink targetId="gesturegpt">input</PaperLink>/
+          <PaperLink targetId="webjump">output</PaperLink> techniques) and
+          problem-driven approaches (e.g.{" "}
+          <PaperLink targetId="signaling-human-intentions">understanding users' choices of non-verbal cues to
+          express their intents</PaperLink>). While they may have different paradigms, they are deeply
           complementary. Thus, I would like to define my research interest as iteratively{" "}
           <strong className="text-primary-ink">designing novel interactive systems</strong> and{" "}
           <strong className="text-primary-ink">
@@ -131,6 +134,33 @@ const ExternalLink = ({ href, children }: { href: string; children: React.ReactN
     {children}
   </a>
 );
+
+const PaperLink = ({
+  targetId,
+  children,
+}: {
+  targetId: string;
+  children: React.ReactNode;
+}) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const el = document.getElementById(targetId);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      history.replaceState(null, "", `#${targetId}`);
+    }
+  };
+  return (
+    <a
+      href={`#${targetId}`}
+      onClick={handleClick}
+      className="underline decoration-dotted decoration-foreground/50 decoration-2 underline-offset-2 transition-colors hover:text-primary-ink hover:decoration-primary/70"
+    >
+      {children}
+    </a>
+  );
+};
+
 
 const PixelCloud = ({
   className,

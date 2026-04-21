@@ -10,6 +10,7 @@ import {
  } from "lucide-react";
 
 type Publication = {
+  id: string;
   title: string;
   url: string;
   venue: string;
@@ -23,6 +24,7 @@ type Publication = {
 
 const publications: Publication[] = [
   {
+    id: "shall-we-dig-deeper",
     title:
       "\"Shall We Dig Deeper?\": Designing and Evaluating Strategies for LLM Agents to Advance Knowledge Co-Construction in Asynchronous Online Discussions",
     url: "https://dl.acm.org/doi/10.1145/3772318.3790551",
@@ -45,6 +47,7 @@ const publications: Publication[] = [
     code: "https://github.com/Yuanky123/Knowledgebot-backend",
   },
   {
+    id: "signaling-human-intentions",
     title:
       "Signaling Human Intentions to Service Robots: Understanding the Use of Social Cues during In-Person Conversations",
     url: "https://dl.acm.org/doi/full/10.1145/3706598.3714235",
@@ -71,6 +74,7 @@ const publications: Publication[] = [
     video: "https://www.youtube.com/watch?v=iUH8Oag2Dso",
   },
   {
+    id: "gesturegpt",
     title:
       "GestureGPT: Toward Zero-Shot Free-Form Hand Gesture Understanding with Large Language Model Agents",
     url: "https://dl.acm.org/doi/10.1145/3698145",
@@ -94,6 +98,7 @@ const publications: Publication[] = [
     paper: "/files/Zeng et al. - 2024 - GestureGPT Toward Zero-Shot Free-Form Hand Gesture Understanding with Large Language Model Agents.pdf",
   },
   {
+    id: "webjump",
     title: "WebJump: AR-facilitated Distributed Display of Web Pages",
     url: "https://dl.acm.org/doi/10.1145/3544549.3585669",
     venue: "CHI EA '23",
@@ -130,7 +135,7 @@ const Publications = () => {
 
       <ul className="mt-6 space-y-5">
         {publications.map((pub) => (
-          <li key={pub.title} className="pixel-card">
+          <li key={pub.id} id={pub.id} className="pixel-card scroll-mt-8 target:ring-2 target:ring-primary target:ring-offset-2 target:ring-offset-background">
             <div className="flex flex-wrap items-center gap-2">
               <span className="pixel-tag bg-primary-soft text-primary-ink font-display text-base font-semibold">
                 {pub.venue}
