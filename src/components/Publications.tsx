@@ -66,7 +66,7 @@ const publications: Publication[] = [
         </p>
       </>
     ),
-    paper: "/files/Lyu et al. - 2025 - Signaling Human Intentions to Service Robots Understanding the Use of Social Cues during In-Person Conversations.pdf",
+    paper: "/files/Lyu et al. - 2025 - Signaling Human Intentions to Service Robots Understanding the Use of Social Cues during In-Person.pdf",
     code: "https://github.com/meow-wwww/QuestPro_HRI_Detection",
     video: "https://www.youtube.com/watch?v=iUH8Oag2Dso",
   },
@@ -113,7 +113,7 @@ const publications: Publication[] = [
         </p>
       </>
     ),
-    paper: "/files/Zeng et al. - 2023 - WebJump AR-facilitated Distributed Display of Web Pages.pdf",
+    paper: "/files/Zeng et al_2023_WebJump.pdf",
     code: "https://github.com/meow-wwww/WebJump",
     video: "https://www.youtube.com/watch?v=RPzv-_atlig",
   },
