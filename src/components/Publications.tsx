@@ -121,11 +121,11 @@ const publications: Publication[] = [
       <>
         <p>
           We got some empirical insights on how&nbsp;
-          <PaperImage src="/files/paper_figures/signaling-human-intentions/robot_mophorlogy.png" alt="">robot morphologies</PaperImage>
+          <PaperImage src="/files/paper_figures/signaling-human-intentions/robot_mophorlogy.webp" alt="">robot morphologies</PaperImage>
           &nbsp;and conversation roles will affect users' choices of&nbsp;
-          <PaperImage src="/files/paper_figures/signaling-human-intentions/social_cues.png" alt="">social cues</PaperImage>
+          <PaperImage src="/files/paper_figures/signaling-human-intentions/social_cues.webp" alt="">social cues</PaperImage>
           &nbsp;to signal their&nbsp;
-          <PaperImage src="/files/paper_figures/signaling-human-intentions/intentions.png" alt="">intentions</PaperImage>
+          <PaperImage src="/files/paper_figures/signaling-human-intentions/intentions.webp" alt="">intentions</PaperImage>
           .
         </p>
         <p>
@@ -154,14 +154,14 @@ const publications: Publication[] = [
     tldr: (
       <>
         <p>
-          <PaperImage src="/files/paper_figures/gesturegpt/existing_systems.png" alt="">Existing gesture interfaces</PaperImage>
+          <PaperImage src="/files/paper_figures/gesturegpt/existing_systems.webp" alt="">Existing gesture interfaces</PaperImage>
           &nbsp;only works with a fixed set of gestures (no matter they are built-in or user-defined), 
           which introduces learning or demonstration efforts for users. 
         </p>
         <p>
           We built a&nbsp;
-          <PaperImage src="/files/paper_figures/gesturegpt/multi-agent.png" alt="">multi-agent</PaperImage>, LLM-based&nbsp;
-          <PaperImage src="/files/paper_figures/gesturegpt/framework.png" alt="">framework</PaperImage>&nbsp;to understand the intentions behind <strong>free-form</strong> hand gestures, with the help of contextual information. 
+          <PaperImage src="/files/paper_figures/gesturegpt/multi-agent.webp" alt="">multi-agent</PaperImage>, LLM-based&nbsp;
+          <PaperImage src="/files/paper_figures/gesturegpt/framework.webp" alt="">framework</PaperImage>&nbsp;to understand the intentions behind <strong>free-form</strong> hand gestures, with the help of contextual information. 
         </p>
       </>
     ),
@@ -184,7 +184,7 @@ const publications: Publication[] = [
           Head-mounted displays (HMDs) enable richer and more immersive input/output modalities but has relatively low quality displays. 
         </p>
         <p>
-          We built <PaperImage src="/files/paper_figures/webjump/framework.png" alt="">WebJump</PaperImage> to combine the advantages of both :D
+          We built <PaperImage src="/files/paper_figures/webjump/framework.webp" alt="">WebJump</PaperImage> to combine the advantages of both :D
         </p>
       </>
     ),
