@@ -9,6 +9,58 @@ import {
   PlayCircle,
   Sparkles,
  } from "lucide-react";
+ import { Dialog, DialogContent } from "@/components/ui/dialog";
+/**
+ * Inline link inside a TL;DR that opens an image in a (nearly) full-screen
+ * lightbox. Click outside the image card to close.
+ *
+ * Usage inside a `tldr` JSX block:
+ *   <PaperImage src="/files/gesturegpt-teaser.png" alt="System overview">
+ *     system overview
+ *   </PaperImage>
+ */
+export function PaperImage({
+  src,
+  alt,
+  children,
+}: {
+  src: string;
+  alt?: string;
+  children: React.ReactNode;
+}) {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className="underline decoration-dotted decoration-foreground/50 decoration-2 underline-offset-2 transition-colors hover:text-primary-ink hover:decoration-primary/70"
+      >
+        {children}
+      </button>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent
+          className="max-w-[95vw] w-fit border-0 bg-transparent p-0 shadow-none sm:rounded-none [&>button]:hidden"
+          onClick={() => setOpen(false)}
+        >
+          <div
+            className="pixel-card bg-card !p-3 sm:!p-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={src}
+              alt={alt ?? ""}
+              className="block max-h-[85vh] max-w-[90vw] w-auto h-auto rounded-lg object-contain"
+            />
+            {alt && (
+              <p className="mt-2 text-center text-sm text-muted-foreground">{alt}</p>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+}
 
 type Publication = {
   id: string;
@@ -39,9 +91,13 @@ const publications: Publication[] = [
     tldr: (
       <>
         <p>
-          We studied how an LLM-powered agent with different intervention styles (telling, selling, participating, delegating) could advance knowledge co-construction in asynchronous online discussions.
+          We studied how an LLM-powered agent with&nbsp;
+          <PaperImage src="/files/paper_figures/shall-we-dig-deeper/intervention_styles.png" alt="">different intervention styles</PaperImage>
+          &nbsp; (telling, selling, participating, delegating) could advance knowledge co-construction in asynchronous online discussions.
         <br />
-          Each style has distinct effects on both content and experience.
+          Each style has distinct&nbsp;
+          <PaperImage src="/files/paper_figures/shall-we-dig-deeper/effects.png" alt="">effects</PaperImage>
+          &nbsp;on both content and experience.
         </p>
       </>
     ),
@@ -63,11 +119,18 @@ const publications: Publication[] = [
     tldr: (
       <>
         <p>
-          We got some empirical insights on how robot morphologies and conversation roles will affect users' choices of social cues to signal their intentions.
-        <br />
-          Some findings are quite counterintuitive 🧐. For example, guess whether the speaker or the listener will use more verbal cues? 
-          At the beginning we all thought that the listener will use more verbal cues since their verbal channel is less occupied. 
-          But it turned out that they will use less verbal cues for politeness concerns ... :)
+          We got some empirical insights on how&nbsp;
+          <PaperImage src="/files/paper_figures/signaling-human-intentions/robot_mophorlogy.png" alt="">robot morphologies</PaperImage>
+          &nbsp;and conversation roles will affect users' choices of&nbsp;
+          <PaperImage src="/files/paper_figures/signaling-human-intentions/social_cues.png" alt="">social cues</PaperImage>
+          &nbsp;to signal their&nbsp;
+          <PaperImage src="/files/paper_figures/signaling-human-intentions/intentions.png" alt="">intentions</PaperImage>
+          .
+        </p>
+        <p>
+          Some findings are quite counterintuitive 🧐. For example, guess whether the speaker or the listener will use more verbal cues?
+          At the beginning we all thought that the listener will use more verbal cues since their verbal channel is less occupied.
+          But it turned out that they will use less verbal cues for politeness concerns ... <PaperImage src="/files/paper_figures/signaling-human-intentions/politeness.png" alt="">:)</PaperImage>
         </p>
       </>
     ),
@@ -90,10 +153,13 @@ const publications: Publication[] = [
     tldr: (
       <>
         <p>
-          Existing gesture interfaces only works with a fixed set of gestures (no matter they are built-in or user-defined), 
+          <PaperImage src="/files/paper_figures/gesturegpt/existing_systems.png" alt="">Existing gesture interfaces</PaperImage>
+          &nbsp;only works with a fixed set of gestures (no matter they are built-in or user-defined), 
           which introduces learning or demonstration efforts for users. 
         <br />
-          We built an LLM-based framework to understand the intentions behind <strong>free-form</strong> hand gestures, with the help of contextual information. 
+          We built a&nbsp;
+          <PaperImage src="/files/paper_figures/gesturegpt/multi-agent.png" alt="">multi-agent</PaperImage>, LLM-based&nbsp;
+          <PaperImage src="/files/paper_figures/gesturegpt/framework.png" alt="">framework</PaperImage>&nbsp;to understand the intentions behind <strong>free-form</strong> hand gestures, with the help of contextual information. 
         </p>
       </>
     ),
@@ -115,7 +181,7 @@ const publications: Publication[] = [
           PC has high-quality displays but is limited in input modalities. 
           Head-mounted displays (HMDs) enable richer and more immersive input/output modalities but has relatively low quality displays. 
         <br />
-          We built WebJump to combine the advantages of both :D
+          We built <PaperImage src="/files/paper_figures/webjump/framework.png" alt="">WebJump</PaperImage> to combine the advantages of both :D
         </p>
       </>
     ),
