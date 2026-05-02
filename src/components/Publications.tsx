@@ -5,8 +5,9 @@ import {
   Code2, 
   ExternalLink as ExternalLinkIcon, 
   FileText,
+  Presentation,
+  PlayCircle,
   Sparkles,
-  Video,
  } from "lucide-react";
 
 type Publication = {
@@ -18,7 +19,8 @@ type Publication = {
   authors: React.ReactNode;
   tldr?: React.ReactNode;
   paper?: string;
-  video?: string;
+  presentation?: string;
+  demo?: string;
   code?: string;
 };
 
@@ -63,7 +65,7 @@ const publications: Publication[] = [
         <p>
           We got some empirical insights on how robot morphologies and conversation roles will affect users' choices of social cues to signal their intentions.
         <br />
-          Some findings are quite counterintuitive🧐. For example, guess whether the speaker or the listener will use more verbal cues? 
+          Some findings are quite counterintuitive 🧐. For example, guess whether the speaker or the listener will use more verbal cues? 
           At the beginning we all thought that the listener will use more verbal cues since their verbal channel is less occupied. 
           But it turned out that they will use less verbal cues for politeness concerns ... :)
         </p>
@@ -71,7 +73,7 @@ const publications: Publication[] = [
     ),
     paper: "/files/Lyu et al. - 2025 - Signaling Human Intentions to Service Robots Understanding the Use of Social Cues during In-Person.pdf",
     code: "https://github.com/meow-wwww/QuestPro_HRI_Detection",
-    video: "https://www.youtube.com/watch?v=iUH8Oag2Dso",
+    presentation: "https://www.youtube.com/watch?v=iUH8Oag2Dso",
   },
   {
     id: "gesturegpt",
@@ -111,8 +113,7 @@ const publications: Publication[] = [
       <>
         <p>
           PC has high-quality displays but is limited in input modalities. 
-        <br />
-          Head-mounted displays (HMDs) enable more diverse and immersive input/output modalities but has relatively low quality displays. 
+          Head-mounted displays (HMDs) enable richer and more immersive input/output modalities but has relatively low quality displays. 
         <br />
           We built WebJump to combine the advantages of both :D
         </p>
@@ -120,7 +121,8 @@ const publications: Publication[] = [
     ),
     paper: "/files/Zeng et al_2023_WebJump.pdf",
     code: "https://github.com/meow-wwww/WebJump",
-    video: "https://www.youtube.com/watch?v=RPzv-_atlig",
+    presentation: "https://www.youtube.com/watch?v=RPzv-_atlig",
+    demo: "https://youtu.be/pKC8qQUHPd4",
   },
 ];
 
@@ -159,7 +161,7 @@ const Publications = () => {
             </a>
 
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{pub.authors}</p>
-            <TldrToggle paper={pub.paper} code={pub.code} video={pub.video}>
+            <TldrToggle paper={pub.paper} code={pub.code} presentation={pub.presentation} demo={pub.demo}>
               {pub.tldr ?? (
                 <span className="italic text-muted-foreground">
                   TL;DR coming soon ... I'm still thinking about how to write it ...
@@ -173,18 +175,20 @@ const Publications = () => {
   );
 };
 
-const TldrToggle = ({ children, paper, code, video }: 
+const TldrToggle = ({ children, paper, code, presentation, demo }: 
   { 
     children: React.ReactNode,
     paper: string,
     code: string,
-    video: string,
+    presentation: string,
+    demo: string,
   }) => {
   const [isOpen, setIsOpen] = useState(false);
   const extraLinks = [
     paper && { label: "Paper", url: paper, icon: FileText },
     code && { label: "Code", url: code, icon: Code2 },
-    video && { label: "Video", url: video, icon: Video },
+    presentation && { label: "Presentation", url: presentation, icon: Presentation },
+    demo && { label: "Demo", url: demo, icon: PlayCircle },
   ].filter(Boolean) as { label: string; url: string; icon: typeof Code2 }[];
 
   return (
