@@ -94,7 +94,8 @@ const publications: Publication[] = [
           We studied how an LLM-powered agent with&nbsp;
           <PaperImage src="/files/paper_figures/shall-we-dig-deeper/intervention_styles.png" alt="">different intervention styles</PaperImage>
           &nbsp; (telling, selling, participating, delegating) could advance knowledge co-construction in asynchronous online discussions.
-        <br />
+        </p>
+        <p>
           Each style has distinct&nbsp;
           <PaperImage src="/files/paper_figures/shall-we-dig-deeper/effects.png" alt="">effects</PaperImage>
           &nbsp;on both content and experience.
@@ -156,7 +157,8 @@ const publications: Publication[] = [
           <PaperImage src="/files/paper_figures/gesturegpt/existing_systems.png" alt="">Existing gesture interfaces</PaperImage>
           &nbsp;only works with a fixed set of gestures (no matter they are built-in or user-defined), 
           which introduces learning or demonstration efforts for users. 
-        <br />
+        </p>
+        <p>
           We built a&nbsp;
           <PaperImage src="/files/paper_figures/gesturegpt/multi-agent.png" alt="">multi-agent</PaperImage>, LLM-based&nbsp;
           <PaperImage src="/files/paper_figures/gesturegpt/framework.png" alt="">framework</PaperImage>&nbsp;to understand the intentions behind <strong>free-form</strong> hand gestures, with the help of contextual information. 
@@ -180,7 +182,8 @@ const publications: Publication[] = [
         <p>
           PC has high-quality displays but is limited in input modalities. 
           Head-mounted displays (HMDs) enable richer and more immersive input/output modalities but has relatively low quality displays. 
-        <br />
+        </p>
+        <p>
           We built <PaperImage src="/files/paper_figures/webjump/framework.png" alt="">WebJump</PaperImage> to combine the advantages of both :D
         </p>
       </>
@@ -295,7 +298,7 @@ const TldrToggle = ({ children, paper, code, presentation, demo }:
         }`}
       >
         <div className="overflow-hidden">
-          <div className="rounded-x1 border-2 border-dashed border-primary-ink/40 bg-primary-soft/60 p-3 text-sm leading-relaxed text-primary-ink">
+          <div className="rounded-x1 border-2 border-dashed border-primary-ink/40 bg-primary-soft/60 space-y-3 p-3 text-sm leading-relaxed text-primary-ink [&_p]:my-0">
             {children}
           </div>
         </div>
