@@ -92,12 +92,12 @@ const publications: Publication[] = [
       <>
         <p>
           We studied how an LLM-powered agent with&nbsp;
-          <PaperImage src="/files/paper_figures/shall-we-dig-deeper/intervention_styles.png" alt="">different intervention styles</PaperImage>
+          <PaperImage src="/files/paper_figures/shall-we-dig-deeper/intervention_styles.webp" alt="">different intervention styles</PaperImage>
           &nbsp; (telling, selling, participating, delegating) could advance knowledge co-construction in asynchronous online discussions.
         </p>
         <p>
           Each style has distinct&nbsp;
-          <PaperImage src="/files/paper_figures/shall-we-dig-deeper/effects.png" alt="">effects</PaperImage>
+          <PaperImage src="/files/paper_figures/shall-we-dig-deeper/effects.webp" alt="">effects</PaperImage>
           &nbsp;on both content and experience.
         </p>
       </>
