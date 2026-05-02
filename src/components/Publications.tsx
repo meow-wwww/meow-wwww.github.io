@@ -130,7 +130,7 @@ const publications: Publication[] = [
         <p>
           Some findings are quite counterintuitive 🧐. For example, guess whether the speaker or the listener will use more verbal cues?
           At the beginning we all thought that the listener will use more verbal cues since their verbal channel is less occupied.
-          But it turned out that they will use less verbal cues for politeness concerns ... <PaperImage src="/files/paper_figures/signaling-human-intentions/politeness.png" alt="">:)</PaperImage>
+          But it turned out that they will use less verbal cues for politeness concerns ... :)
         </p>
       </>
     ),
