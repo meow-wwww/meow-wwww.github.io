@@ -316,7 +316,7 @@ const TldrToggle = ({ children, paper, code, presentation, demo }:
         }`}
       >
         <div className="overflow-hidden">
-          <div className="rounded-x1 border-2 border-dashed border-primary-ink/40 bg-primary-soft/60 p-3 text-sm leading-relaxed text-primary-ink">
+          <div className="rounded-x1 border-2 border-dashed border-primary-ink/40 bg-primary-soft/60 space-y-3 p-3 text-sm leading-relaxed text-primary-ink">
             {children}
           </div>
         </div>
