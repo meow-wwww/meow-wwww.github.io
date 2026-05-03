@@ -15,7 +15,7 @@ import {
  * lightbox. Click outside the image card to close.
  *
  * Usage inside a `tldr` JSX block:
- *   <PaperImage src="/files/gesturegpt-teaser.png" alt="System overview">
+ *   <PaperImage src="/files/gesturegpt-teaser.webp" alt="System overview">
  *     system overview
  *   </PaperImage>
  */
@@ -29,30 +29,49 @@ export function PaperImage({
   children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  const handleOpenChange = (next: boolean) => {
+    if (next) setImageLoaded(false);
+    setOpen(next);
+  };
+
   return (
     <>
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={() => handleOpenChange(true)}
         className="underline decoration-dotted decoration-foreground/50 decoration-2 underline-offset-2 transition-colors hover:text-primary-ink hover:decoration-primary/70"
       >
         {children}
       </button>
-      <Dialog open={open} onOpenChange={setOpen}>
+      <Dialog open={open} onOpenChange={handleOpenChange}>
         <DialogContent
-          className="max-w-[95vw] w-fit border-0 bg-transparent p-0 shadow-none sm:rounded-none [&>button]:hidden"
+          className="flex w-max max-w-[95vw] flex-col border-0 bg-transparent p-0 shadow-none sm:rounded-none [&>button]:hidden"
           onClick={() => setOpen(false)}
         >
           <div
-            className="pixel-card bg-card !p-3 sm:!p-4"
+            className="pixel-card bg-card !p-3 sm:!p-4 w-max min-w-[min(90vw,20rem)] max-w-[95vw]"
             onClick={(e) => e.stopPropagation()}
           >
+            {!imageLoaded && (
+              <p className="py-10 text-center text-sm text-muted-foreground">
+                Loading Figures...
+              </p>
+            )}
             <img
+              key={open ? src : "closed"}
               src={src}
               alt={alt ?? ""}
-              className="block max-h-[85vh] max-w-[90vw] w-auto h-auto rounded-lg object-contain"
+              onLoad={() => setImageLoaded(true)}
+              onError={() => setImageLoaded(true)}
+              className={
+                imageLoaded
+                  ? "block h-auto max-h-[85vh] w-auto max-w-[90vw] rounded-lg object-contain"
+                  : "hidden"
+              }
             />
-            {alt && (
+            {imageLoaded && alt && (
               <p className="mt-2 text-center text-sm text-muted-foreground">{alt}</p>
             )}
           </div>
@@ -182,8 +201,7 @@ const publications: Publication[] = [
         <p>
           PC has high-quality displays but is limited in input modalities. 
           Head-mounted displays (HMDs) enable richer and more immersive input/output modalities but has relatively low quality displays. 
-        </p>
-        <p>
+        <br />
           We built <PaperImage src="/files/paper_figures/webjump/framework.webp" alt="">WebJump</PaperImage> to combine the advantages of both :D
         </p>
       </>
@@ -298,7 +316,7 @@ const TldrToggle = ({ children, paper, code, presentation, demo }:
         }`}
       >
         <div className="overflow-hidden">
-          <div className="rounded-x1 border-2 border-dashed border-primary-ink/40 bg-primary-soft/60 space-y-3 p-3 text-sm leading-relaxed text-primary-ink [&_p]:my-0">
+          <div className="rounded-x1 border-2 border-dashed border-primary-ink/40 bg-primary-soft/60 p-3 text-sm leading-relaxed text-primary-ink">
             {children}
           </div>
         </div>
