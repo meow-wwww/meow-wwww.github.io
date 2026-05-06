@@ -1,4 +1,4 @@
-import { Sparkles } from "lucide-react";
+import { Sparkles, Mail, Github, GraduationCap } from "lucide-react";
 import avatar from "@/assets/avatar.jpg";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 
@@ -119,10 +119,51 @@ const Hero = () => {
         <p className="mt-4 text-base sm:text-lg leading-relaxed text-foreground/85">
           If you are interested in my work, feel free to chat with me 🥹.
         </p>
+
+        <div className="mt-6 flex flex-wrap items-center gap-2">
+          <SocialLink
+            href="mailto:xwangij@connect.ust.hk"
+            icon={Mail}
+            label="Email"
+            external={false}
+          />
+          <SocialLink
+            href="https://scholar.google.com/citations?user=wZ9D8YIAAAAJ&hl=en"
+            icon={GraduationCap}
+            label="Google Scholar"
+          />
+          <SocialLink
+            href="https://github.com/meow-wwww"
+            icon={Github}
+            label="GitHub"
+          />
+        </div>
+
       </div>
     </header>
   );
 };
+
+const SocialLink = ({
+  href,
+  icon: Icon,
+  label,
+  external = true,
+}: {
+  href: string;
+  icon: React.ComponentType<{ className?: string }>;
+  label: string;
+  external?: boolean;
+}) => (
+  <a
+    href={href}
+    {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
+    className="pixel-tag bg-secondary text-secondary-foreground font-display hover:bg-accent hover:text-accent-foreground transition-colors"
+  >
+    <Icon className="h-3.5 w-3.5" />
+    {label}
+  </a>
+);
 
 const ExternalLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
   <a
