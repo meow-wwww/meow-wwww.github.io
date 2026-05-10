@@ -185,6 +185,7 @@ const publications: Publication[] = [
       </>
     ),
     paper: "/files/Zeng et al. - 2024 - GestureGPT Toward Zero-Shot Free-Form Hand Gesture Understanding with Large Language Model Agents.pdf",
+    code: "https://github.com/meow-wwww/GestureGPT_Clean",
   },
   {
     id: "webjump",
