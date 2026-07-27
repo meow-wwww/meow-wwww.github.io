@@ -18,3 +18,7 @@ node_modules
 
 # Ignore folders related to IDEs
 .vscode/
+
+
+README_backup.md
+src/components/Publication_backup

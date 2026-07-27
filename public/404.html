@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Xiaoyu Wang</title>
+    <script>
+      // GitHub Pages SPA fallback: redirect unknown paths to index.html
+      // while preserving the original path for the client router.
+      sessionStorage.setItem(
+        "spa-redirect",
+        location.pathname + location.search + location.hash
+      );
+      location.replace(location.origin + "/");
+    </script>
+  </head>
+  <body></body>
+</html>

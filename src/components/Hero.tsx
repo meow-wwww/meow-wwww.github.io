@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Sparkles, Mail, Github, GraduationCap } from "lucide-react";
 import avatar from "@/assets/avatar.jpg";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
@@ -138,6 +139,23 @@ const Hero = () => {
             label="GitHub"
           />
         </div>
+
+        <p className="mt-5 text-sm sm:text-base leading-relaxed text-foreground/85">
+          More about me:{" "}
+          {/* <Link
+            to="/reading"
+            className="underline decoration-dotted decoration-foreground/50 decoration-2 underline-offset-2 transition-colors hover:text-primary-ink hover:decoration-primary/70"
+          >
+            Reading
+          </Link>
+          {" · "} */}
+          <Link
+            to="/crochet"
+            className="underline decoration-dotted decoration-foreground/50 decoration-2 underline-offset-2 transition-colors hover:text-primary-ink hover:decoration-primary/70"
+          >
+            Crochet
+          </Link>
+        </p>
 
       </div>
     </header>
