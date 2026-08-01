@@ -1,5 +1,9 @@
+import { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkBreaks from "remark-breaks";
 import SidePageLayout from "@/components/SidePageLayout";
 import { SectionTitle } from "@/components/Publications";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 type CrochetProject = {
   src: string;
@@ -8,10 +12,122 @@ type CrochetProject = {
   caption: React.ReactNode;
   /** Optional link to the original pattern / tutorial (e.g. Xiaohongshu). */
   originUrl?: string;
+  /**
+   * Optional self-made tutorial. Shows as "Tutorial ↗" in the caption;
+   * clicking opens an in-page lightbox (text and/or images).
+   */
+  tutorial?: React.ReactNode;
 };
 
 const captionLinkClass =
   "font-semibold underline decoration-primary-foreground/50 underline-offset-2 hover:decoration-primary-foreground";
+
+/**
+ * Markdown tutorial loaded from a `.md` file under `public/`.
+ * Supports common Markdown (e.g. **bold**, *italic*, lists, links).
+ * Single newlines are kept as line breaks (handy for crochet round lists).
+ * Put each section in its own file, e.g.
+ *   public/files/crochets/tutorials/chimo/01.md
+ * then: <TutorialText src="/files/crochets/tutorials/chimo/01.md" />
+ */
+export function TutorialText({ src }: { src: string }) {
+  const [text, setText] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    setText(null);
+    fetch(src)
+      .then((res) => {
+        if (!res.ok) throw new Error(`Failed to load ${src}`);
+        return res.text();
+      })
+      .then((body) => {
+        if (!cancelled) setText(body.trim());
+      })
+      .catch(() => {
+        if (!cancelled) setText("");
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [src]);
+
+  if (text === null) {
+    return <p className="text-muted-foreground">Loading…</p>;
+  }
+  if (!text) return null;
+  return (
+    <div className="prose prose-sm max-w-none prose-p:my-2 prose-headings:mb-1 prose-headings:mt-3 prose-headings:font-semibold first:prose-headings:mt-0 prose-strong:font-semibold prose-a:text-primary prose-ul:my-2 prose-ol:my-2">
+      <ReactMarkdown remarkPlugins={[remarkBreaks]}>{text}</ReactMarkdown>
+    </div>
+  );
+}
+
+/**
+ * Image inside a crochet tutorial lightbox.
+ * Stack several of these for multi-step / multi-photo tutorials.
+ */
+export function TutorialImage({
+  src,
+  alt,
+}: {
+  src: string;
+  alt?: string;
+}) {
+  return (
+    <figure className="space-y-1.5">
+      <img
+        src={src}
+        alt={alt ?? ""}
+        loading="lazy"
+        className="block h-auto w-full max-w-full rounded-lg object-contain"
+      />
+      {alt ? (
+        <figcaption className="text-center text-xs text-muted-foreground">
+          {alt}
+        </figcaption>
+      ) : null}
+    </figure>
+  );
+}
+
+/**
+ * "Tutorial ↗" control that opens an in-page lightbox (same idea as
+ * PaperImage in publication TL;DRs). Put <TutorialText /> and/or
+ * <TutorialImage />s as children.
+ */
+function TutorialLink({ children }: { children: React.ReactNode }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          setOpen(true);
+        }}
+        className={captionLinkClass}
+      >
+        Tutorial ↗
+      </button>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent
+          className="flex w-max max-w-[95vw] flex-col border-0 bg-transparent p-0 shadow-none sm:rounded-none [&>button]:hidden"
+          onClick={() => setOpen(false)}
+        >
+          <div
+            className="pixel-card bg-card !p-4 sm:!p-5 w-[min(92vw,28rem)] max-h-[85vh] overflow-y-auto space-y-3 text-sm leading-relaxed text-foreground"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {open ? children : null}
+          </div>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+}
 
 const projects: CrochetProject[] = [
   {
@@ -34,6 +150,11 @@ const projects: CrochetProject[] = [
         >
           Mole Manor
         </a>
+      </>
+    ),
+    tutorial: (
+      <>
+        <TutorialText src="/files/crochets/tutorials/lahm/tutorial.md" />
       </>
     ),
   },
@@ -100,7 +221,7 @@ const projects: CrochetProject[] = [
         >
           Duoduo
         </a>
-        , a floppy-eared puppy amigurumi
+        , a floppy-eared puppy
       </>
     ),
     originUrl: "https://www.xiaohongshu.com/explore/696ec04f000000001a03530f?xsec_token=ABdkOETa26DwyUSB1GmEW_-cfMtIl50LaKFK3LTDFPOBk=&xsec_source=pc_search&source=web_search_result_notes",
@@ -127,6 +248,14 @@ const projects: CrochetProject[] = [
     src: "/files/crochets/202605_chimo.webp",
     alt: "Amigurumi donkey in a black sweater and red fez",
     caption: "Handmade CHImo based on the preview image at CHI'26 (before I could get a real one in next year's CHI...)",
+    // Markdown sections live as .md files under public/files/crochets/tutorials/<slug>/
+    // tutorial: (
+    //   <>
+    //     <TutorialText src="/files/crochets/tutorials/chimo/01.md" />
+    //     <TutorialImage src="/files/crochets/tutorials/chimo/01.webp" alt="Body" />
+    //     <TutorialImage src="/files/crochets/tutorials/chimo/02.webp" alt="Sweater" />
+    //   </>
+    // ),
   },
 ];
 
@@ -138,7 +267,7 @@ const Crochet = () => {
 
         <p className="mt-6 text-base sm:text-lg leading-relaxed text-foreground/85">
           Soft things I have made with yarn.
-          Some include a link to the original tutorial.
+          Some link to the original pattern; others include a self-made tutorial.
         </p>
 
         <ul
@@ -167,6 +296,12 @@ const Crochet = () => {
                       >
                         Original ↗
                       </a>
+                    </>
+                  )}
+                  {project.tutorial && (
+                    <>
+                      {" · "}
+                      <TutorialLink>{project.tutorial}</TutorialLink>
                     </>
                   )}
                 </figcaption>

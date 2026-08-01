@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Sparkles, Mail, Github, GraduationCap } from "lucide-react";
+import { Sparkles, Mail, Github, GraduationCap, Twitter } from "lucide-react";
 import avatar from "@/assets/avatar.jpg";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 
@@ -25,63 +25,98 @@ const Hero = () => {
       </div>
 
       <div className="mx-auto max-w-3xl px-5">
-        <span className="pixel-tag bg-highlight text-highlight-foreground font-pixel text-[10px]">
-          <Sparkles className="h-3 w-3" /> &nbsp;Red Panda :)
-        </span>
-
-        <div className="mt-5 flex items-center gap-5 sm:gap-7">
-          <h1 className="font-display flex-1 text-4xl sm:text-5xl font-bold leading-tight text-primary-ink">
-            Hi <span className="inline-block animate-float">🥳</span> This is{" "}
-            <span className="relative inline-block">
-              <span className="relative z-10">Xiaoyu</span>
-              <span className="absolute inset-x-0 bottom-1 -z-0 h-3 bg-primary/35 rounded-sm" />
+        <div className="mt-5 flex gap-5 sm:gap-7">
+          <div className="relative flex flex-1 flex-col justify-center pr-2">
+            <span className="pixel-tag absolute left-0 top-0 bg-highlight text-highlight-foreground font-pixel text-[10px]">
+              <Sparkles className="h-3 w-3" /> &nbsp;Red Panda :)
             </span>
-            .
-          </h1>
+
+            <h1 className="font-display text-4xl sm:text-5xl font-bold leading-tight text-primary-ink">
+              Hi <span className="inline-block animate-float">🥳</span> This is{" "}
+              <span className="relative inline-block">
+                <span className="relative z-10">Xiaoyu</span>
+                <span className="absolute inset-x-0 bottom-1 -z-0 h-3 bg-primary/35 rounded-sm" />
+              </span>
+              .
+            </h1>
+          </div>
 
           {/* Avatar — red panda */}
-          <HoverCard openDelay={120} closeDelay={120}>
-            <HoverCardTrigger asChild>
-              <div className="pixel-card !p-2 !rounded-2xl bg-primary-soft shrink-0 cursor-pointer">
-                <div className="h-24 w-24 sm:h-28 sm:w-28 overflow-hidden rounded-xl bg-gradient-to-br from-primary/30 to-highlight/40">
-                  <img
-                    src={avatar}
-                    alt="Xiaoyu Wang's avatar — a cute red panda"
-                    className="h-full w-full object-cover"
-                  />
+          <div className="flex shrink-0 flex-col items-center gap-2.5">
+            <HoverCard openDelay={120} closeDelay={120}>
+              <HoverCardTrigger asChild>
+                <div className="pixel-card !p-2 !rounded-2xl bg-primary-soft cursor-pointer">
+                  <div className="h-[7.2rem] w-[7.2rem] sm:h-[8.4rem] sm:w-[8.4rem] overflow-hidden rounded-xl bg-gradient-to-br from-primary/30 to-highlight/40">
+                    <img
+                      src={avatar}
+                      alt="Xiaoyu Wang's avatar — a cute red panda"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
                 </div>
-              </div>
-            </HoverCardTrigger>
-            <HoverCardContent
-              side="bottom"
-              align="end"
-              sideOffset={-24}
-              className="w-64 pixel-card !p-3 !rounded-2xl bg-card border-2 text-sm text-foreground/90 animate-fade-in"
-            >
-              <div className="flex items-start gap-2">
-                <Sparkles className="h-4 w-4 text-highlight shrink-0 mt-0.5" />
-                <p className="leading-relaxed">
-                  This avatar is made by{" "}
-                  <a
-                    href="https://weibo.com/u/5347613156"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-semibold text-primary underline decoration-primary/40 decoration-2 underline-offset-2 hover:text-primary-ink hover:decoration-primary"
-                  >
-                    阿闷aman
-                  </a>
-                  , a Chinese cartoonist.
-                </p>
-              </div>
-            </HoverCardContent>
-          </HoverCard>
+              </HoverCardTrigger>
+              <HoverCardContent
+                side="bottom"
+                align="end"
+                sideOffset={-24}
+                className="w-64 pixel-card !p-3 !rounded-2xl bg-card border-2 text-sm text-foreground/90 animate-fade-in"
+              >
+                <div className="flex items-start gap-2">
+                  <Sparkles className="h-4 w-4 text-highlight shrink-0 mt-0.5" />
+                  <p className="leading-relaxed">
+                    This avatar is made by{" "}
+                    <a
+                      href="https://weibo.com/u/5347613156"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="font-semibold text-primary underline decoration-primary/40 decoration-2 underline-offset-2 hover:text-primary-ink hover:decoration-primary"
+                    >
+                      阿闷aman
+                    </a>
+                    , a Chinese cartoonist.
+                  </p>
+                </div>
+              </HoverCardContent>
+            </HoverCard>
+
+            <div className="flex items-center justify-center gap-1.5">
+              <SocialLink
+                href="mailto:xwangij@connect.ust.hk"
+                icon={Mail}
+                label="Email"
+                external={false}
+              />
+              <SocialLink
+                href="https://scholar.google.com/citations?user=wZ9D8YIAAAAJ&hl=en"
+                icon={GraduationCap}
+                label="Google Scholar"
+              />
+              <SocialLink
+                href="https://github.com/meow-wwww"
+                icon={Github}
+                label="GitHub"
+              />
+              <SocialLink
+                href="https://x.com/daydreamer_kkk"
+                icon={Twitter}
+                label="Twitter"
+              />
+            </div>
+          </div>
         </div>
 
         <p className="mt-6 text-base sm:text-lg leading-relaxed text-foreground/85">
-          I'm now working as a research assistant at the{" "}
-          <ExternalLink href="https://hci.cse.ust.hk/">HCI Initiative</ExternalLink> of{" "}
+          I'm an incoming PhD student at{" "}
+          <ExternalLink href="https://datavisards.com/">DataVisards Lab</ExternalLink> in{" "}
           <ExternalLink href="https://www.ust.hk/">
-            The Hong Kong University of Science and Technology
+            HKUST
+          </ExternalLink>
+          , supervised by{" "}
+          <ExternalLink href="https://narechania.com/">Prof. Arpit Narechania</ExternalLink>. 
+          Currently, I'm working as a research assistant at the{" "}
+          <ExternalLink href="https://hci.cse.ust.hk/">HCI Initiative</ExternalLink> in{" "}
+          <ExternalLink href="https://www.ust.hk/">
+            HKUST
           </ExternalLink>
           , supervised by{" "}
           <ExternalLink href="https://home.cse.ust.hk/~mxj/">Prof. Xiaojuan Ma</ExternalLink>.
@@ -121,40 +156,30 @@ const Hero = () => {
           If you are interested in my work, feel free to chat with me 🥹.
         </p>
 
-        <div className="mt-6 flex flex-wrap items-center gap-2">
-          <SocialLink
-            href="mailto:xwangij@connect.ust.hk"
-            icon={Mail}
-            label="Email"
-            external={false}
-          />
-          <SocialLink
-            href="https://scholar.google.com/citations?user=wZ9D8YIAAAAJ&hl=en"
-            icon={GraduationCap}
-            label="Google Scholar"
-          />
-          <SocialLink
-            href="https://github.com/meow-wwww"
-            icon={Github}
-            label="GitHub"
-          />
-        </div>
+        <hr className="mt-6 mb-5 border-0 border-t border-primary-ink/20" />
 
-        <p className="mt-5 text-sm sm:text-base leading-relaxed text-foreground/85">
+        <p className="text-sm sm:text-base leading-relaxed text-foreground/85">
           More about me:{" "}
-          {/* <Link
+          <Link
             to="/reading"
             className="underline decoration-dotted decoration-foreground/50 decoration-2 underline-offset-2 transition-colors hover:text-primary-ink hover:decoration-primary/70"
           >
-            Reading
+            📚 Reading
           </Link>
-          {" · "} */}
+          {" · "}
           <Link
             to="/crochet"
             className="underline decoration-dotted decoration-foreground/50 decoration-2 underline-offset-2 transition-colors hover:text-primary-ink hover:decoration-primary/70"
           >
-            Crochet
+            🧶 Crochet
           </Link>
+          {/* {" · "}
+          <Link
+            to="/projects"
+            className="underline decoration-dotted decoration-foreground/50 decoration-2 underline-offset-2 transition-colors hover:text-primary-ink hover:decoration-primary/70"
+          >
+            🧸 HackForFun
+          </Link> */}
         </p>
 
       </div>
@@ -169,17 +194,17 @@ const SocialLink = ({
   external = true,
 }: {
   href: string;
-  icon: React.ComponentType<{ className?: string }>;
+  icon: React.ComponentType<{ className?: string; strokeWidth?: number | string }>;
   label: string;
   external?: boolean;
 }) => (
   <a
     href={href}
+    aria-label={label}
     {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
-    className="pixel-tag bg-secondary text-secondary-foreground font-display hover:bg-accent hover:text-accent-foreground transition-colors"
+    className="pixel-tag !h-9 !w-9 !gap-0 !rounded-lg !p-0 justify-center bg-secondary text-secondary-foreground transition-[transform,box-shadow,background-color,color] duration-200 ease-out hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-accent hover:text-accent-foreground hover:shadow-[3px_3px_0_0_hsl(var(--primary-ink)/0.85)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
   >
-    <Icon className="h-3.5 w-3.5" />
-    {label}
+    <Icon className="h-4 w-4" strokeWidth={2.25} aria-hidden="true" />
   </a>
 );
 

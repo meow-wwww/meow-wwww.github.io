@@ -87,6 +87,7 @@ type Publication = {
   url: string;
   venue: string;
   highlight?: string;
+  selected?: boolean;
   authors: React.ReactNode;
   tldr?: React.ReactNode;
   paper?: string;
@@ -97,7 +98,35 @@ type Publication = {
 
 const publications: Publication[] = [
   {
+    id: "ai-infused-systems-for-online-communities",
+    selected: true,
+    title:
+      "Designing AI-Infused Interactive Systems for Online Communities: A Systematic Literature Review",
+    url: "https://arxiv.org/abs/2509.23309",
+    venue: "CSCW '26 (To Appear)",
+    authors: (
+      <>
+         Yuanhao Zhang, <Me />, Jiaxiong Hu, Ziqi Pan, Zhenhui Peng, Xiaojuan Ma
+      </>
+    ),
+    tldr: (
+      <>
+        <p>
+          We present a systematic review of 77 studies, analyzing the systems they propose through three lenses: the challenges they aim to address, 
+          their{" "}
+          <PaperImage src="/files/paper_figures/ai-infused-systems-for-online-communities/functionality.webp" alt="">design functionalities</PaperImage>
+          , and the{" "}
+          <PaperImage src="/files/paper_figures/ai-infused-systems-for-online-communities/evaluation_metrics.webp" alt="">evaluation metrics</PaperImage>
+          employed. 
+          Our synthesis distills a set of key design lessons and considerations.
+        </p>
+      </>
+    ),
+    paper: "/files/Zhang et al. - Designing AI-Infused Interactive Systems for Online Communities A Systematic Literature Review.pdf",
+  },
+  {
     id: "shall-we-dig-deeper",
+    selected: false,
     title:
       "\"Shall We Dig Deeper?\": Designing and Evaluating Strategies for LLM Agents to Advance Knowledge Co-Construction in Asynchronous Online Discussions",
     url: "https://dl.acm.org/doi/10.1145/3772318.3790551",
@@ -110,14 +139,14 @@ const publications: Publication[] = [
     tldr: (
       <>
         <p>
-          We studied how an LLM-powered agent with&nbsp;
+          We studied how an LLM-powered agent with{" "}
           <PaperImage src="/files/paper_figures/shall-we-dig-deeper/intervention_styles.webp" alt="">different intervention styles</PaperImage>
-          &nbsp; (telling, selling, participating, delegating) could advance knowledge co-construction in asynchronous online discussions.
+          {" "} (telling, selling, participating, delegating) could advance knowledge co-construction in asynchronous online discussions.
         </p>
         <p>
-          Each style has distinct&nbsp;
+          Each style has distinct{" "}
           <PaperImage src="/files/paper_figures/shall-we-dig-deeper/effects.webp" alt="">effects</PaperImage>
-          &nbsp;on both content and experience.
+          {" "}on both content and experience.
         </p>
       </>
     ),
@@ -126,6 +155,7 @@ const publications: Publication[] = [
   },
   {
     id: "signaling-human-intentions",
+    selected: true,
     title:
       "Signaling Human Intentions to Service Robots: Understanding the Use of Social Cues during In-Person Conversations",
     url: "https://dl.acm.org/doi/full/10.1145/3706598.3714235",
@@ -139,11 +169,11 @@ const publications: Publication[] = [
     tldr: (
       <>
         <p>
-          We got some empirical insights on how&nbsp;
+          We got some empirical insights on how{" "}
           <PaperImage src="/files/paper_figures/signaling-human-intentions/robot_mophorlogy.webp" alt="">robot morphologies</PaperImage>
-          &nbsp;and conversation roles will affect users' choices of&nbsp;
+          {" "}and conversation roles will affect users' choices of{" "}
           <PaperImage src="/files/paper_figures/signaling-human-intentions/social_cues.webp" alt="">social cues</PaperImage>
-          &nbsp;to signal their&nbsp;
+          {" "}to signal their{" "}
           <PaperImage src="/files/paper_figures/signaling-human-intentions/intentions.webp" alt="">intentions</PaperImage>
           .
         </p>
@@ -160,6 +190,7 @@ const publications: Publication[] = [
   },
   {
     id: "gesturegpt",
+    selected: true,
     title:
       "GestureGPT: Toward Zero-Shot Free-Form Hand Gesture Understanding with Large Language Model Agents",
     url: "https://dl.acm.org/doi/10.1145/3698145",
@@ -174,13 +205,13 @@ const publications: Publication[] = [
       <>
         <p>
           <PaperImage src="/files/paper_figures/gesturegpt/existing_systems.webp" alt="">Existing gesture interfaces</PaperImage>
-          &nbsp;only works with a fixed set of gestures (no matter they are built-in or user-defined), 
+          {" "}only works with a fixed set of gestures (no matter they are built-in or user-defined), 
           which introduces learning or demonstration efforts for users. 
         </p>
         <p>
-          We built a&nbsp;
-          <PaperImage src="/files/paper_figures/gesturegpt/multi-agent.webp" alt="">multi-agent</PaperImage>, LLM-based&nbsp;
-          <PaperImage src="/files/paper_figures/gesturegpt/framework.webp" alt="">framework</PaperImage>&nbsp;to understand the intentions behind <strong>free-form</strong> hand gestures, with the help of contextual information. 
+          We built a{" "}
+          <PaperImage src="/files/paper_figures/gesturegpt/multi-agent.webp" alt="">multi-agent</PaperImage>, LLM-based{" "}
+          <PaperImage src="/files/paper_figures/gesturegpt/framework.webp" alt="">framework</PaperImage>{" "}to understand the intentions behind <strong>free-form</strong> hand gestures, with the help of contextual information. 
         </p>
       </>
     ),
@@ -189,6 +220,7 @@ const publications: Publication[] = [
   },
   {
     id: "webjump",
+    selected: true,
     title: "WebJump: AR-facilitated Distributed Display of Web Pages",
     url: "https://dl.acm.org/doi/10.1145/3544549.3585669",
     venue: "CHI EA '23",
@@ -219,12 +251,49 @@ function Me() {
 }
 
 const Publications = () => {
+  // Selected / All filter — kept for future use
+  // const [filter, setFilter] = useState<"selected" | "all">("selected");
+  // const visiblePublications =
+  //   filter === "selected" ? publications.filter((p) => p.selected) : publications;
+  const visiblePublications = publications;
+
   return (
     <section id="publications" className="mx-auto max-w-3xl px-5 py-10">
-      <SectionTitle emoji="📝">Selected Publications</SectionTitle>
+      <SectionTitle
+        emoji="📝"
+        // after={
+        //   <div className="flex items-center gap-1.5">
+        //     <button
+        //       type="button"
+        //       onClick={() => setFilter("selected")}
+        //       className={`pixel-tag text-base font-display transition-colors ${
+        //         filter === "selected"
+        //           ? "bg-primary text-primary-foreground"
+        //           : "bg-primary-soft text-primary-ink hover:bg-primary hover:text-primary-foreground"
+        //       }`}
+        //     >
+        //       Selected
+        //     </button>
+        //     <span className="text-base text-muted-foreground">/</span>
+        //     <button
+        //       type="button"
+        //       onClick={() => setFilter("all")}
+        //       className={`pixel-tag text-base font-display transition-colors ${
+        //         filter === "all"
+        //           ? "bg-primary text-primary-foreground"
+        //           : "bg-primary-soft text-primary-ink hover:bg-primary hover:text-primary-foreground"
+        //       }`}
+        //     >
+        //       All
+        //     </button>
+        //   </div>
+        // }
+      >
+        Publications
+      </SectionTitle>
 
       <ul className="mt-6 space-y-5">
-        {publications.map((pub) => (
+        {visiblePublications.map((pub) => (
           <li key={pub.id} id={pub.id} className="pixel-card scroll-mt-8 target:ring-2 target:ring-primary target:ring-offset-2 target:ring-offset-background">
             <div className="flex flex-wrap items-center gap-2">
               <span className="pixel-tag bg-primary-soft text-primary-ink font-display text-base font-semibold">
@@ -329,15 +398,18 @@ const TldrToggle = ({ children, paper, code, presentation, demo }:
 export const SectionTitle = ({
   children,
   emoji,
+  after,
 }: {
   children: React.ReactNode;
   emoji: string;
+  after?: React.ReactNode;
 }) => (
   <h2 className="font-display flex items-center gap-3 text-2xl sm:text-3xl font-bold text-primary-ink">
     <span className="text-3xl" aria-hidden>
       {emoji}
     </span>
     <span>{children}</span>
+    {after}
     <span className="ml-2 h-[3px] flex-1 rounded-full bg-primary/30" />
   </h2>
 );

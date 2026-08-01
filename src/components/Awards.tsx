@@ -1,6 +1,7 @@
 import { SectionTitle } from "./Publications";
 
 const awards = [
+  { year: "2026", text: "Xiaoou Tang Scholarship", star: true },
   { year: "2025", text: "Best Paper Honorable Mention Award @ CHI '25", star: true },
   { year: "2024", text: "Best Paper Award @ ISS '24", star: true },
   { year: "2024", text: "Excellent Student Scholarship for MSc BDT Program @ HKUST" },

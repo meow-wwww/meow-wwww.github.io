@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import Publications from "@/components/Publications";
 import Awards from "@/components/Awards";
+import Services from "@/components/Services";
 import Misc from "@/components/Misc";
 import ForestBackground from "@/components/ForestBackground";
 
@@ -13,6 +14,8 @@ const Index = () => {
       <Publications />
       <div className="cloud-divider mx-auto max-w-3xl" aria-hidden />
       <Awards />
+      <div className="cloud-divider mx-auto max-w-3xl" aria-hidden />
+      <Services />
       <div className="cloud-divider mx-auto max-w-3xl" aria-hidden />
       <Misc />
 
