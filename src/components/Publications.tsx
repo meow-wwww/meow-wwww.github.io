@@ -289,7 +289,7 @@ const Publications = () => {
         //   </div>
         // }
       >
-        Publications
+        Selected Publications
       </SectionTitle>
 
       <ul className="mt-6 space-y-5">

@@ -6,7 +6,7 @@ const awards = [
   { year: "2024", text: "Best Paper Award @ ISS '24", star: true },
   { year: "2024", text: "Excellent Student Scholarship for MSc BDT Program @ HKUST" },
   { year: "2023", text: "Outstanding Graduate in Yuanpei College @ PKU" },
-  { year: "2022", text: "Award for Scientific Research @ PKU" },
+  // { year: "2022", text: "Award for Scientific Research @ PKU" },
   { year: "2022", text: "3rd-class Scholarship @ PKU" },
 ];
 

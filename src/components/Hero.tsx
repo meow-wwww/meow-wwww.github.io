@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Sparkles, Mail, Github, GraduationCap, Twitter } from "lucide-react";
 import avatar from "@/assets/avatar.jpg";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import PartyEmoji from "@/components/PartyEmoji";
 
 const Hero = () => {
   return (
@@ -32,7 +33,7 @@ const Hero = () => {
             </span>
 
             <h1 className="font-display text-4xl sm:text-5xl font-bold leading-tight text-primary-ink">
-              Hi <span className="inline-block animate-float">🥳</span> This is{" "}
+              Hi <PartyEmoji /> This is{" "}
               <span className="relative inline-block">
                 <span className="relative z-10">Xiaoyu</span>
                 <span className="absolute inset-x-0 bottom-1 -z-0 h-3 bg-primary/35 rounded-sm" />
@@ -106,21 +107,23 @@ const Hero = () => {
         </div>
 
         <p className="mt-6 text-base sm:text-lg leading-relaxed text-foreground/85">
-          I'm an incoming PhD student at{" "}
+          I'm a first-year PhD student at{" "}
           <ExternalLink href="https://datavisards.com/">DataVisards Lab</ExternalLink> in{" "}
+          <ExternalLink href="https://cse.hkust.edu.hk/">Department of Computer Science and Engineering</ExternalLink>,{" "}
           <ExternalLink href="https://www.ust.hk/">
             HKUST
           </ExternalLink>
           , supervised by{" "}
           <ExternalLink href="https://narechania.com/">Prof. Arpit Narechania</ExternalLink>. 
-          Currently, I'm working as a research assistant at the{" "}
-          <ExternalLink href="https://hci.cse.ust.hk/">HCI Initiative</ExternalLink> in{" "}
+          Prior to this, I worked as a research assistant at the{" "}
+          <ExternalLink href="https://hci.cse.ust.hk/">HCI Initiative</ExternalLink>{" "}
+           in{" "}
           <ExternalLink href="https://www.ust.hk/">
             HKUST
           </ExternalLink>
           , supervised by{" "}
           <ExternalLink href="https://home.cse.ust.hk/~mxj/">Prof. Xiaojuan Ma</ExternalLink>.
-          Previously I was a research intern at{" "}
+          I also spent time as a research intern at{" "}
           <ExternalLink href="https://english.ict.cas.cn/">
             Institute of Computing Technology, Chinese Academy of Sciences
           </ExternalLink>

@@ -48,7 +48,7 @@ const shelf: ShelfBook[] = [
   {
     title: "Brave NUI World",
     author: "Daniel Wigdor & Dennis Wixon",
-    status: "want",
+    status: "reading",
   },
   {
     title: "Human-Computer Interaction: An Empirical Research Perspective",
@@ -64,18 +64,12 @@ const shelf: ShelfBook[] = [
 
 /** Finished books — grouped on the page by `year`. */
 const finished: FinishedBook[] = [
-  { 
-    title: "The Structure of Scientific Revolutions", author: "Thomas S. Kuhn", year: 2026 },
-  {
-    title: "Casebook in Abnormal Psychology", author: "Timothy A. Brown & David H. Barlow", year: 2025,
-  },
-  {
-    title: "How to Be a Cat", author: "Lisa Swerling & Ralph Lazar", year: 2024,
-  },
-  { title: "Science as a Vocation", author: "Max Weber", year: 2023 },
-  {
-    title: "Forty Studies that Changed Psychology", author: "Roger R. Hock", year: 2023,
-  },
+  { title: "Counselling for Toads: A Psychological Adventure", author: "Robert de Board", year: 2026 },
+  { title: "The Structure of Scientific Revolutions", author: "Thomas S. Kuhn", year: 2026 },
+  { title: "Casebook in Abnormal Psychology", author: "Timothy A. Brown & David H. Barlow", year: 2025 },
+  { title: "How to Be a Cat", author: "Lisa Swerling & Ralph Lazar", year: 2024 },
+  { title: "Science as a Vocation", author: "Max Weber", year: 2023},
+  { title: "Forty Studies that Changed Psychology", author: "Roger R. Hock", year: 2023},
 ];
 
 const statusLabel: Record<ShelfStatus, string> = {
