@@ -102,8 +102,8 @@ const publications: Publication[] = [
     selected: true,
     title:
       "Designing AI-Infused Interactive Systems for Online Communities: A Systematic Literature Review",
-    url: "https://arxiv.org/abs/2509.23309",
-    venue: "CSCW '26 (To Appear)",
+    url: "https://dl.acm.org/doi/10.1145/3816920",
+    venue: "CSCW '26",
     authors: (
       <>
          Yuanhao Zhang, <Me />, Jiaxiong Hu, Ziqi Pan, Zhenhui Peng, Xiaojuan Ma
