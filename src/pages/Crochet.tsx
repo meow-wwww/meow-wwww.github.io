@@ -5,22 +5,63 @@ import SidePageLayout from "@/components/SidePageLayout";
 import { SectionTitle } from "@/components/Publications";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
+/** Pattern credit. The label "Source ↗" is defined once, in SourceView. */
+type SourceLink = { kind: "source"; href: string };
+
+/** Self-made tutorial. The label "Tutorial ↗" is defined once, in TutorialView. */
+type TutorialLink = { kind: "tutorial"; content: React.ReactNode };
+
+/** A caption phrase with its own words, e.g. the name of a film. */
+type PhraseLink = { kind: "phrase"; text: string; href: string };
+
+type CaptionPart = string | SourceLink | TutorialLink | PhraseLink;
+
+const source = (href: string): SourceLink => ({ kind: "source", href });
+const tutorial = (content: React.ReactNode): TutorialLink => ({
+  kind: "tutorial",
+  content,
+});
+const link = (text: string, href: string): PhraseLink => ({
+  kind: "phrase",
+  text,
+  href,
+});
+
 type CrochetProject = {
   src: string;
   alt: string;
-  /** Plain text or JSX (so phrases can be links). */
-  caption: React.ReactNode;
-  /** Optional link to the original pattern / tutorial (e.g. Xiaohongshu). */
-  originUrl?: string;
   /**
-   * Optional self-made tutorial. Shows as "Tutorial ↗" in the caption;
-   * clicking opens an in-page lightbox (text and/or images).
+   * Text mixed with links. Pattern credits are source(url); self-made
+   * tutorials are tutorial(...). Both labels are defined once, below.
    */
-  tutorial?: React.ReactNode;
+  caption: CaptionPart[];
 };
 
 const captionLinkClass =
   "font-semibold underline decoration-primary-foreground/50 underline-offset-2 hover:decoration-primary-foreground";
+
+function CaptionAnchor({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className={captionLinkClass}
+    >
+      {children}
+    </a>
+  );
+}
+
+function SourceView({ href }: { href: string }) {
+  return <CaptionAnchor href={href}>Source ↗</CaptionAnchor>;
+}
 
 /**
  * Markdown tutorial loaded from a `.md` file under `public/`.
@@ -93,10 +134,10 @@ export function TutorialImage({
 
 /**
  * "Tutorial ↗" control that opens an in-page lightbox (same idea as
- * PaperImage in publication TL;DRs). Put <TutorialText /> and/or
- * <TutorialImage />s as children.
+ * PaperImage in publication TL;DRs). The caption passes the lightbox
+ * body via tutorial(...); this is the only place the label is written.
  */
-function TutorialLink({ children }: { children: React.ReactNode }) {
+function TutorialView({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -129,133 +170,115 @@ function TutorialLink({ children }: { children: React.ReactNode }) {
   );
 }
 
+function Caption({ parts }: { parts: CaptionPart[] }) {
+  return (
+    <>
+      {parts.map((part, i) => {
+        if (typeof part === "string") return <span key={i}>{part}</span>;
+        if (part.kind === "source") return <SourceView key={i} href={part.href} />;
+        if (part.kind === "tutorial") {
+          return <TutorialView key={i}>{part.content}</TutorialView>;
+        }
+        return (
+          <CaptionAnchor key={i} href={part.href}>
+            {part.text}
+          </CaptionAnchor>
+        );
+      })}
+    </>
+  );
+}
+
 const projects: CrochetProject[] = [
   {
     src: "/files/crochets/202601_pingu_cake.webp",
     alt: "Festive penguin amigurumi with a white hat and green sweater",
-    caption: "Pingu",
-    originUrl: "https://www.xiaohongshu.com/explore/6723991a000000001b02dd2a?source=webshare&xhsshare=pc_web&xsec_token=ABk82EZ52AufXMBfHMfuBNjdUFBU9QlRwBndgxNJi93kM=&xsec_source=pc_share",
+    caption: [
+      "Pingu · ",
+      source("https://www.xiaohongshu.com/user/profile/5f0c31180000000001004e7d"),
+    ],
   },
   {
     src: "/files/crochets/202603_lahm.webp",
     alt: "Orange sprout amigurumi with yellow leaf ears",
-    caption: (
-      <>
-        Lahm, the pet in the game{" "}
-        <a
-          href="https://en.wikipedia.org/wiki/Mole_Manor"
-          target="_blank"
-          rel="noreferrer"
-          className={captionLinkClass}
-        >
-          Mole Manor
-        </a>
-      </>
-    ),
-    tutorial: (
-      <>
-        <TutorialText src="/files/crochets/tutorials/lahm/tutorial.md" />
-      </>
-    ),
+    caption: [
+      "Lahm, the pet in the game ",
+      link("Mole Manor", "https://en.wikipedia.org/wiki/Mole_Manor"),
+      " · ",
+      tutorial(<TutorialText src="/files/crochets/tutorials/lahm/tutorial.md" />),
+    ],
   },
   {
     src: "/files/crochets/202604_sushi.webp",
     alt: "Crochet shrimp tempura and salmon nigiri sushi",
-    caption: (
-      <>
-        Shrimp tempura (
-        <a
-          href="https://www.xiaohongshu.com/explore/66a4b056000000000d033e2b?xsec_token=ABzIoaJEXOz5bI6fntnhzONZ-V1x-vGUDe7Rbcy287HSQ=&xsec_source=pc_note"
-          target="_blank"
-          rel="noreferrer"
-          className={captionLinkClass}
-        >
-          Original ↗
-        </a>
-        ) & salmon nigiri (
-        <a
-          href="https://www.xiaohongshu.com/explore/64f824ba000000001d0168e7?xsec_token=ABJpSnWpBzGqU0O7PthLz7xSyraFZCXxt0Q3KvpCt2KB8=&xsec_source=pc_note"
-          target="_blank"
-          rel="noreferrer"
-          className={captionLinkClass}
-        >
-          Original ↗
-        </a>
-        )
-      </>
-    ),
+    caption: [
+      "Shrimp tempura (",
+      source("https://www.xiaohongshu.com/user/profile/5b607c7d4eacab050f6b7f70"),
+      ") & salmon nigiri (",
+      source("https://www.xiaohongshu.com/user/profile/5a09a7c24eacab55cf0dce82"),
+      ")",
+    ],
   },
   {
     src: "/files/crochets/202604_pineapple.webp",
     alt: "Textured yellow crochet pineapple with green leaves",
-    caption: "A tiny crochet pineapple drawstring pouch",
-    originUrl: "https://www.xiaohongshu.com/explore/60112cbd0000000001002200?xsec_token=AB4AaTB5JVTq5AZQUP82vBfFFI55wcJzxRGhBN1kv-IAA=&xsec_source=pc_note",
+    caption: [
+      "A tiny crochet pineapple drawstring pouch · ",
+      source("https://www.xiaohongshu.com/user/profile/5a6c6afe11be10382205a921"),
+    ],
   },
   {
     src: "/files/crochets/202602_luoxiaohei.webp",
     alt: "The Legend of Luo Xiaohei",
-    caption: (
-      <>
-        <a
-          href="https://en.wikipedia.org/wiki/The_Legend_of_Luo_Xiaohei"
-          target="_blank"
-          rel="noreferrer"
-          className={captionLinkClass}
-        >
-          The Legend of Luo Xiaohei
-        </a>
-      </>
-    ),
-    originUrl: "https://www.xiaohongshu.com/explore/6891d3340000000022023b6a?xsec_token=ABFGIaAR8taA6Z1M38RxlmMfSOvw0QeARVoH1lh-kxbA0=&xsec_source=pc_search&source=web_explore_feed",
+    caption: [
+      link("The Legend of Luo Xiaohei", "https://en.wikipedia.org/wiki/The_Legend_of_Luo_Xiaohei"),
+      " · ",
+      source("https://www.xiaohongshu.com/user/profile/620b231d00000000100056cf"),
+    ],
   },
   {
     src: "/files/crochets/202602_duoduo.webp",
     alt: "Brown and white puppy amigurumi with floppy black ears",
-    caption: (
-      <>
-        <a
-          href="https://www.youtube.com/watch?v=t_b1Kanh7XM"
-          target="_blank"
-          rel="noreferrer"
-          className={captionLinkClass}
-        >
-          Duoduo
-        </a>
-        , a floppy-eared puppy
-      </>
-    ),
-    originUrl: "https://www.xiaohongshu.com/explore/696ec04f000000001a03530f?xsec_token=ABdkOETa26DwyUSB1GmEW_-cfMtIl50LaKFK3LTDFPOBk=&xsec_source=pc_search&source=web_search_result_notes",
+    caption: [
+      link("Duoduo", "https://www.youtube.com/watch?v=t_b1Kanh7XM"),
+      ", a floppy-eared puppy · ",
+      source("https://www.xiaohongshu.com/user/profile/5f55068500000000010086a4"),
+    ],
   },
   {
     src: "/files/crochets/202603_globe.webp",
     alt: "Handmade crochet globe of Earth",
-    caption: (
-      <>
-        A tiny crochet globe, after watching{" "}
-        <a
-          href="https://en.wikipedia.org/wiki/Project_Hail_Mary_(film)"
-          target="_blank"
-          rel="noreferrer"
-          className={captionLinkClass}
-        >
-          Project Hail Mary
-        </a>
-      </>
-    ),
-    originUrl: "https://www.xiaohongshu.com/explore/69c6284800000000230110f0?xsec_token=AB0tkuFbLyamtXiltJZCmMyOC0POtSNcyC1VbNF9CNamk=&xsec_source=pc_search&source=web_user_page",
+    caption: [
+      "A tiny crochet globe, after watching ",
+      link("Project Hail Mary", "https://en.wikipedia.org/wiki/Project_Hail_Mary_(film)"),
+      " · ",
+      source("https://www.xiaohongshu.com/user/profile/54ad762ce7798934b60d945e"),
+    ],
   },
   {
     src: "/files/crochets/202605_chimo.webp",
     alt: "Amigurumi donkey in a black sweater and red fez",
-    caption: "Handmade CHImo based on the preview image at CHI'26 (before I could get a real one in next year's CHI...)",
+    caption: [
+      "Handmade CHImo based on the preview image at CHI'26 (before I could get a real one in next year's CHI...)",
+    ],
     // Markdown sections live as .md files under public/files/crochets/tutorials/<slug>/
-    // tutorial: (
+    // " · ",
+    // tutorial(
     //   <>
     //     <TutorialText src="/files/crochets/tutorials/chimo/01.md" />
     //     <TutorialImage src="/files/crochets/tutorials/chimo/01.webp" alt="Body" />
     //     <TutorialImage src="/files/crochets/tutorials/chimo/02.webp" alt="Sweater" />
     //   </>
     // ),
+  },
+  {
+    src: "/files/crochets/202609_ginkgo_leaf.webp",
+    alt: "Ginkgo leaf",
+    caption: [
+      "Ginkgo leaf",
+      " · ",
+      source("https://www.xiaohongshu.com/user/profile/60c62291000000002002dbf6"),
+    ],
   },
 ];
 
@@ -284,26 +307,7 @@ const Crochet = () => {
                   className="block w-full h-auto"
                 />
                 <figcaption className="absolute inset-x-0 bottom-0 translate-y-1 bg-gradient-to-t from-primary-ink/85 via-primary-ink/55 to-transparent px-3 pb-3 pt-8 text-sm leading-snug text-primary-foreground opacity-0 transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100">
-                  {project.caption}
-                  {project.originUrl && (
-                    <>
-                      {" · "}
-                      <a
-                        href={project.originUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className={captionLinkClass}
-                      >
-                        Original ↗
-                      </a>
-                    </>
-                  )}
-                  {project.tutorial && (
-                    <>
-                      {" · "}
-                      <TutorialLink>{project.tutorial}</TutorialLink>
-                    </>
-                  )}
+                  <Caption parts={project.caption} />
                 </figcaption>
               </figure>
             </li>
