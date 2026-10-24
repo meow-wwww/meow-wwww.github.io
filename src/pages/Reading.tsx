@@ -31,11 +31,6 @@ const shelf: ShelfBook[] = [
     status: "want" 
   },
   { 
-    title: "The Design of Everyday Things", 
-    author: "Don Norman", 
-    status: "reading",
-   },
-  { 
     title: "Language and Tool Support for 3D Crochet Patterns: Virtual Crochet with a Graph Structure", 
     author: "Klara Seitz, Jens Lincke, Patrick Rein, Robert Hirschfeld", 
     status: "want", 
@@ -64,6 +59,7 @@ const shelf: ShelfBook[] = [
 
 /** Finished books — grouped on the page by `year`. */
 const finished: FinishedBook[] = [
+  { title: "The Design of Everyday Things", author: "Don Norman", year: 2026},
   { title: "Counselling for Toads: A Psychological Adventure", author: "Robert de Board", year: 2026 },
   { title: "The Structure of Scientific Revolutions", author: "Thomas S. Kuhn", year: 2026 },
   { title: "Casebook in Abnormal Psychology", author: "Timothy A. Brown & David H. Barlow", year: 2025 },
